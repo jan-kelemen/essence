@@ -46,7 +46,7 @@ public class CookbookControllerTests : IClassFixture<WebApplicationFactory<Progr
         var client = _factory.CreateClient();
 
         var request = new AddRecipeRequestDto
-        { 
+        {
             Name = Guid.NewGuid().ToString()
         };
 
@@ -88,7 +88,7 @@ public class CookbookControllerTests : IClassFixture<WebApplicationFactory<Progr
         var client = _factory.CreateClient();
 
         var createRequest = new AddRecipeRequestDto
-        { 
+        {
             Name = Guid.NewGuid().ToString()
         };
         var createResponse = await client.PutAsJsonAsync("api/Cookbook/AddRecipe", createRequest);
