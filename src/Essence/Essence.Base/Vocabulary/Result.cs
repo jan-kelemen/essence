@@ -1,53 +1,45 @@
 ﻿namespace Essence.Base.Vocabulary;
 
-public abstract record Result<T, E>
+public readonly struct SuccessDiscriminator { };
+public readonly struct ErrorDiscriminator { };
+
+public sealed class Result<T, E>
 {
-    public static Result<T, E> FromSuccess(T value) => new Success(value);
-    public static Result<T, E> FromError(E value) => new Error(value);
-
-    public sealed record Success : Result<T, E>
+    private record ValueHolder
     {
-        private readonly T _value;
-
-        internal Success(T value) { _value = value; }
-
-        public T Value => _value;
-
-        public override bool IsSuccess => true;
-
-        public override bool IsError => false;
-
-        public override T Expect => _value;
-
-        public override E ExpectError =>
-            throw new ResultException("Result does not contain a error variant");
+        public record Success(T Value) : ValueHolder;
+        public record Error(E Value) : ValueHolder;
     }
 
-    public sealed record Error : Result<T, E>
+    private readonly ValueHolder _value;
+
+    public Result(T success) : this(new SuccessDiscriminator(), success) { }
+
+    public Result(E error) : this(new ErrorDiscriminator(), error) { }
+
+    public Result(SuccessDiscriminator _, T value)
     {
-        private readonly E _value;
-
-        internal Error(E value) { _value = value; }
-
-        public E Value => _value;
-
-        public override bool IsSuccess => false;
-
-        public override bool IsError => true;
-
-        public override T Expect =>
-            throw new ResultException("Result does not contain a success variant");
-
-        public override E ExpectError => _value;
+        _value = new ValueHolder.Success(value);
     }
 
-    private Result() { }
+    public Result(ErrorDiscriminator _, E value)
+    {
+        _value = new ValueHolder.Error(value);
+    }
 
-    public abstract bool IsSuccess { get; }
+    public static implicit operator Result<T, E>(T success) => new(success);
 
-    public abstract bool IsError { get; }
+    public static implicit operator Result<T, E>(E error) => new(error);
 
-    public abstract T Expect { get; }
+    public bool IsSuccess => _value is ValueHolder.Success;
 
-    public abstract E ExpectError { get; }
+    public bool IsError => !IsSuccess;
+
+    public T Expect => IsSuccess ? 
+        ((ValueHolder.Success)_value).Value :
+        throw new ResultException("Result doesn't contain success variant");
+
+    public E ExpectError => !IsSuccess ?
+        ((ValueHolder.Error)_value).Value :
+        throw new ResultException("Result doesn't contain error variant");
 }

@@ -7,6 +7,7 @@ using Essence.WebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Essence.WebAPI.Controllers
@@ -23,40 +24,37 @@ namespace Essence.WebAPI.Controllers
         }
 
         [HttpPut("AddRecipe")]
-        public async Task<Results<CreatedAtRoute<AddRecipeResponseDto>, Conflict, StatusCodeHttpResult>> AddRecipe([FromBody] AddRecipeRequestDto request)
+        public async Task<Results<CreatedAtRoute<AddRecipeResponseDto>, Conflict>> AddRecipe([FromBody] AddRecipeRequestDto request)
         {
             var result = await _cookbookService.AddRecipe(new(request.Name, request.Description));
 
-            return result switch
+            if (result.IsSuccess)
             {
-                Result<Identifier, AddRecipeError>.Success succ =>
-                  TypedResults.CreatedAtRoute(new AddRecipeResponseDto { Id = succ.Value.Key }, nameof(GetRecipe), new { Id = succ.Value.Key }),
+                return TypedResults.CreatedAtRoute(
+                    new AddRecipeResponseDto { Id = result.Expect.Key }, nameof(GetRecipe), new { Id = result.Expect.Key });
+            }
 
-                Result<Identifier, AddRecipeError>.Error err => err.Value switch
-                {
-                    AddRecipeError.Conflict => TypedResults.Conflict(),
-                    _ => TypedResults.StatusCode(500)
-                },
-
-                _ => TypedResults.StatusCode(500)
+            return result.ExpectError switch
+            {
+                AddRecipeError.Conflict => TypedResults.Conflict(),
+                _ => throw new UnreachableException()
             };
-
         }
 
         [HttpGet("GetRecipe/{id}", Name = nameof(GetRecipe))]
-        public async Task<Results<Ok, NotFound, StatusCodeHttpResult>> GetRecipe([FromRoute] string id)
+        public async Task<Results<Ok, NotFound>> GetRecipe([FromRoute] string id)
         {
             var result = await _cookbookService.GetRecipe(new(id));
 
-            return result switch
+            if (result.IsSuccess)
             {
-                Result<Recipe, GetRecipeError>.Success => TypedResults.Ok(),
-                Result<Recipe, GetRecipeError>.Error err => err.Value switch
-                {
-                    GetRecipeError.NotFound => TypedResults.NotFound(),
-                    _ => TypedResults.StatusCode(500)
-                },
-                _ => TypedResults.StatusCode(500)
+                return TypedResults.Ok();
+            }
+
+            return result.ExpectError switch
+            {
+                GetRecipeError.NotFound => TypedResults.NotFound(),
+                _ => throw new UnreachableException()
             };
         }
     }

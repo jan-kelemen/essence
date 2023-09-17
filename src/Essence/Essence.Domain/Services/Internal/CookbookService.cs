@@ -19,19 +19,19 @@ internal class CookbookService : ICookbookService
 
         if (!_recipes.TryAdd(recipe.Id, recipe))
         {
-            return Task.FromResult(Result<Identifier, AddRecipeError>.FromError(new AddRecipeError.Conflict()));
+            return Task.FromResult(new Result<Identifier, AddRecipeError>(new AddRecipeError.Conflict()));
         }
 
-        return Task.FromResult(Result<Identifier, AddRecipeError>.FromSuccess(recipe.Id));
+        return Task.FromResult(new Result<Identifier, AddRecipeError>(recipe.Id));
     }
 
     public Task<Result<Recipe, GetRecipeError>> GetRecipe(Identifier recipeId)
     {
         if (!_recipes.TryGetValue(recipeId, out var recipe))
         {
-            return Task.FromResult(Result<Recipe, GetRecipeError>.FromError(new GetRecipeError.NotFound(recipeId)));
+            return Task.FromResult(new Result<Recipe, GetRecipeError>(new GetRecipeError.NotFound(recipeId)));
         }
 
-        return Task.FromResult(Result<Recipe, GetRecipeError>.FromSuccess(recipe));
+        return Task.FromResult(new Result<Recipe, GetRecipeError>(recipe));
     }
 }
