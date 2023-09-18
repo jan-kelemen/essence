@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Base", "Essence.Bas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Domain.Infrastructure", "Essence.Domain.Infrastructure\Essence.Domain.Infrastructure.csproj", "{A0077A74-A4BC-4F9E-93DC-DBDF7C438599}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Essence.Base.Test.Unit", "Essence.Base.Test.Unit\Essence.Base.Test.Unit.csproj", "{8ADCDC01-9194-4B26-A4BE-163C3CF1A67A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Base.Test.Unit", "Essence.Base.Test.Unit\Essence.Base.Test.Unit.csproj", "{8ADCDC01-9194-4B26-A4BE-163C3CF1A67A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.WebAPI.Test.Unit", "Essence.WebAPI.Test.Unit\Essence.WebAPI.Test.Unit.csproj", "{D166EC33-23D1-4F03-A7C3-EB6B8D70B125}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{8ADCDC01-9194-4B26-A4BE-163C3CF1A67A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8ADCDC01-9194-4B26-A4BE-163C3CF1A67A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8ADCDC01-9194-4B26-A4BE-163C3CF1A67A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D166EC33-23D1-4F03-A7C3-EB6B8D70B125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D166EC33-23D1-4F03-A7C3-EB6B8D70B125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D166EC33-23D1-4F03-A7C3-EB6B8D70B125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D166EC33-23D1-4F03-A7C3-EB6B8D70B125}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

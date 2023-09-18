@@ -19,7 +19,7 @@ namespace Essence.WebAPI.Controllers
         }
 
         [HttpPut("AddRecipe")]
-        [ProducesResponseType(typeof(AddRecipeResponseDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AddRecipeResponseDto), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<IResult> AddRecipe([FromBody] AddRecipeRequestDto request)
         {
