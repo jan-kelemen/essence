@@ -10,7 +10,7 @@ public class OptionTests
     {
         var option = new Option<int>();
         Assert.False(option.HasValue);
-        Assert.Throws<OptionException>(() => option.Value);
+        Assert.Throws<OptionException>(() => option.Value());
     }
 
     [Fact]
@@ -18,7 +18,7 @@ public class OptionTests
     {
         var option = new Option<int>(42);
         Assert.True(option.HasValue);
-        Assert.Equal(42, option.Value);
+        Assert.Equal(42, option.Value());
     }
 
     [Fact]
@@ -31,6 +31,6 @@ public class OptionTests
 
         var option = FunctionWithImplicitConversion();
         Assert.True(option.HasValue);
-        Assert.Equal(42, option.Value);
+        Assert.Equal(42, option.Value());
     }
 }

@@ -25,7 +25,13 @@ public sealed class Option<T>
 
     public bool HasValue => _value is ValueHolder.Some;
 
-    public T Value => HasValue ?
-        ((ValueHolder.Some)_value).Value :
+    public T Value()
+    {
+        var value = _value as ValueHolder.Some;
+        if (value is not null)
+        {
+            return value.Value;
+        }
         throw new OptionException("Option does not contain a value");
+    }
 }

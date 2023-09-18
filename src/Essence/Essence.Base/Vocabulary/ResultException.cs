@@ -1,4 +1,6 @@
-﻿namespace Essence.Base.Vocabulary
+﻿using System;
+
+namespace Essence.Base.Vocabulary
 {
     public sealed class ResultException : Exception
     {
