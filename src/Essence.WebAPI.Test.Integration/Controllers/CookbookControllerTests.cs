@@ -77,7 +77,7 @@ public class CookbookControllerTests : IClassFixture<WebApplicationFactory<Progr
     {
         var client = _factory.CreateClient();
 
-        var response = await client.GetAsync($"api/Cookbook/AddRecipe/{id}");
+        var response = await client.GetAsync($"api/Cookbook/GetRecipe/{id}");
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }

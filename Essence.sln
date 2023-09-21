@@ -3,19 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.WebAPI", "Essence.WebAPI\Essence.WebAPI.csproj", "{14F914EC-84C0-4303-B446-F80FC16671E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.WebAPI", "src\Essence.WebAPI\Essence.WebAPI.csproj", "{14F914EC-84C0-4303-B446-F80FC16671E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.WebAPI.Test.Integration", "Essence.WebAPI.Test.Integration\Essence.WebAPI.Test.Integration.csproj", "{2111BFDE-C9FD-4A55-AC51-FE3DA1B7A82B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.WebAPI.Test.Integration", "src\Essence.WebAPI.Test.Integration\Essence.WebAPI.Test.Integration.csproj", "{2111BFDE-C9FD-4A55-AC51-FE3DA1B7A82B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Domain", "Essence.Domain\Essence.Domain.csproj", "{9C6B4EBA-7591-41A9-8017-6356E06FCC8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Domain", "src\Essence.Domain\Essence.Domain.csproj", "{9C6B4EBA-7591-41A9-8017-6356E06FCC8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Base", "Essence.Base\Essence.Base.csproj", "{F9C92E85-61C8-4953-8F8F-B91B4065ACDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Base", "src\Essence.Base\Essence.Base.csproj", "{F9C92E85-61C8-4953-8F8F-B91B4065ACDE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Domain.Infrastructure", "Essence.Domain.Infrastructure\Essence.Domain.Infrastructure.csproj", "{A0077A74-A4BC-4F9E-93DC-DBDF7C438599}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Domain.Infrastructure", "src\Essence.Domain.Infrastructure\Essence.Domain.Infrastructure.csproj", "{A0077A74-A4BC-4F9E-93DC-DBDF7C438599}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Base.Test.Unit", "Essence.Base.Test.Unit\Essence.Base.Test.Unit.csproj", "{8ADCDC01-9194-4B26-A4BE-163C3CF1A67A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Base.Test.Unit", "src\Essence.Base.Test.Unit\Essence.Base.Test.Unit.csproj", "{8ADCDC01-9194-4B26-A4BE-163C3CF1A67A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.WebAPI.Test.Unit", "Essence.WebAPI.Test.Unit\Essence.WebAPI.Test.Unit.csproj", "{D166EC33-23D1-4F03-A7C3-EB6B8D70B125}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.WebAPI.Test.Unit", "src\Essence.WebAPI.Test.Unit\Essence.WebAPI.Test.Unit.csproj", "{D166EC33-23D1-4F03-A7C3-EB6B8D70B125}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7758FD10-5E59-417B-A50D-DC55F56EA9FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "db", "db", "{C2DFFF26-B320-4E32-AC87-C39EC375FA44}"
+	ProjectSection(SolutionItems) = preProject
+		db\0000_create_user_and_database.sql = db\0000_create_user_and_database.sql
+		db\0001_create_tables.sql = db\0001_create_tables.sql
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Persistence.Postgre", "src\Essence.Persistence.Postgre\Essence.Persistence.Postgre.csproj", "{CDDAB0E6-2123-4C40-B94A-DF1E003DEB7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,9 +61,23 @@ Global
 		{D166EC33-23D1-4F03-A7C3-EB6B8D70B125}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D166EC33-23D1-4F03-A7C3-EB6B8D70B125}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D166EC33-23D1-4F03-A7C3-EB6B8D70B125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDDAB0E6-2123-4C40-B94A-DF1E003DEB7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDDAB0E6-2123-4C40-B94A-DF1E003DEB7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDDAB0E6-2123-4C40-B94A-DF1E003DEB7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDDAB0E6-2123-4C40-B94A-DF1E003DEB7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{14F914EC-84C0-4303-B446-F80FC16671E4} = {7758FD10-5E59-417B-A50D-DC55F56EA9FF}
+		{2111BFDE-C9FD-4A55-AC51-FE3DA1B7A82B} = {7758FD10-5E59-417B-A50D-DC55F56EA9FF}
+		{9C6B4EBA-7591-41A9-8017-6356E06FCC8D} = {7758FD10-5E59-417B-A50D-DC55F56EA9FF}
+		{F9C92E85-61C8-4953-8F8F-B91B4065ACDE} = {7758FD10-5E59-417B-A50D-DC55F56EA9FF}
+		{A0077A74-A4BC-4F9E-93DC-DBDF7C438599} = {7758FD10-5E59-417B-A50D-DC55F56EA9FF}
+		{8ADCDC01-9194-4B26-A4BE-163C3CF1A67A} = {7758FD10-5E59-417B-A50D-DC55F56EA9FF}
+		{D166EC33-23D1-4F03-A7C3-EB6B8D70B125} = {7758FD10-5E59-417B-A50D-DC55F56EA9FF}
+		{CDDAB0E6-2123-4C40-B94A-DF1E003DEB7A} = {7758FD10-5E59-417B-A50D-DC55F56EA9FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD141063-E5B1-4C88-BED3-89CD96C9AF7D}

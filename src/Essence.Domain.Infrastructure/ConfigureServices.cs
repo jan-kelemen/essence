@@ -8,7 +8,7 @@ public static class ConfigureServices
 {
   public static IServiceCollection AddDomainServices(this IServiceCollection services)
   {
-    services.AddSingleton<ICookbookService, CookbookService>();
+    services.AddScoped<ICookbookService, CookbookService>();
 
     return services;
   }

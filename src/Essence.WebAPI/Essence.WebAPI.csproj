@@ -3,12 +3,14 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <UserSecretsId>bb0c1a3f-201f-4514-a511-13a5febcbd8e</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Essence.Base\Essence.Base.csproj" />
     <ProjectReference Include="..\Essence.Domain.Infrastructure\Essence.Domain.Infrastructure.csproj" />
     <ProjectReference Include="..\Essence.Domain\Essence.Domain.csproj" />
+    <ProjectReference Include="..\Essence.Persistence.Postgre\Essence.Persistence.Postgre.csproj" />
   </ItemGroup>
 
 </Project>
