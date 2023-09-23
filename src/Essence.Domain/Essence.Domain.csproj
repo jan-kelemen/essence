@@ -6,5 +6,6 @@
 	
   <ItemGroup>
 	  <InternalsVisibleTo Include="Essence.Domain.Infrastructure" />
+    <InternalsVisibleTo Include="Essence.Domain.Test.Unit" />
   </ItemGroup>
 </Project>

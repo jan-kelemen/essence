@@ -36,7 +36,7 @@ internal class CookbookRepository : ICookbookRepository
 
             return new Identifier((await connection.ExecuteScalarAsync<Guid>(commandText, parameters)).ToString());
         }
-        catch (PostgresException ex) when (ex.SqlState == "23505")
+        catch (PostgresException ex) when (ex.SqlState == PostgresErrorCodes.UniqueViolation)
         {
             return new AddRecipeError.Conflict();
         }

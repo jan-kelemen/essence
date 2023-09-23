@@ -12,5 +12,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="Essence.Persistence.Infrastructure" />
+    <InternalsVisibleTo Include="Essence.Persistence.Postgre.Test.Integration" />
+    <InternalsVisibleTo Include="Essence.Persistence.Postgre.Test.Unit" />
   </ItemGroup>
 </Project>
