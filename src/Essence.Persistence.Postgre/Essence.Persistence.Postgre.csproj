@@ -1,15 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.151" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
-    <PackageReference Include="Npgsql" Version="7.0.6" />
+    <PackageReference Include="Dapper" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+    <PackageReference Include="Npgsql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-	<InternalsVisibleTo Include="Essence.Persistence.Infrastructure" />
+    <InternalsVisibleTo Include="Essence.Persistence.Infrastructure" />
   </ItemGroup>
 </Project>

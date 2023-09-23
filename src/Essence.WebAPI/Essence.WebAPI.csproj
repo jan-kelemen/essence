@@ -1,8 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <UserSecretsId>bb0c1a3f-201f-4514-a511-13a5febcbd8e</UserSecretsId>
   </PropertyGroup>
 
