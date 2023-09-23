@@ -16,4 +16,7 @@
     <ProjectReference Include="..\Essence.Domain\Essence.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+	<InternalsVisibleTo Include="Essence.Persistence.Infrastructure" />
+  </ItemGroup>
 </Project>

@@ -11,6 +11,6 @@ public sealed record class PostgreConnectionOptions
     public string ConnectionString
     { 
         get => _connectionString;
-        set => _connectionString = Ensure.That.IsNotNull(value);
+        set => _connectionString = Ensure.That.IsNotNullOrEmpty(value);
     }
 }

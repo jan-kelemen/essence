@@ -10,7 +10,7 @@
     <ProjectReference Include="..\Essence.Base\Essence.Base.csproj" />
     <ProjectReference Include="..\Essence.Domain.Infrastructure\Essence.Domain.Infrastructure.csproj" />
     <ProjectReference Include="..\Essence.Domain\Essence.Domain.csproj" />
-    <ProjectReference Include="..\Essence.Persistence.Postgre\Essence.Persistence.Postgre.csproj" />
+    <ProjectReference Include="..\Essence.Persistence.Infrastructure\Essence.Persistence.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

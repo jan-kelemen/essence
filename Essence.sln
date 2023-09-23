@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "db", "db", "{C2DFFF26-B320-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essence.Persistence.Postgre", "src\Essence.Persistence.Postgre\Essence.Persistence.Postgre.csproj", "{CDDAB0E6-2123-4C40-B94A-DF1E003DEB7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Essence.Persistence.Infrastructure", "src\Essence.Persistence.Infrastructure\Essence.Persistence.Infrastructure.csproj", "{F8CD2A44-3E1E-42CC-982D-902117ECF5E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{CDDAB0E6-2123-4C40-B94A-DF1E003DEB7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDDAB0E6-2123-4C40-B94A-DF1E003DEB7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDDAB0E6-2123-4C40-B94A-DF1E003DEB7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8CD2A44-3E1E-42CC-982D-902117ECF5E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8CD2A44-3E1E-42CC-982D-902117ECF5E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8CD2A44-3E1E-42CC-982D-902117ECF5E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8CD2A44-3E1E-42CC-982D-902117ECF5E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{8ADCDC01-9194-4B26-A4BE-163C3CF1A67A} = {7758FD10-5E59-417B-A50D-DC55F56EA9FF}
 		{D166EC33-23D1-4F03-A7C3-EB6B8D70B125} = {7758FD10-5E59-417B-A50D-DC55F56EA9FF}
 		{CDDAB0E6-2123-4C40-B94A-DF1E003DEB7A} = {7758FD10-5E59-417B-A50D-DC55F56EA9FF}
+		{F8CD2A44-3E1E-42CC-982D-902117ECF5E7} = {7758FD10-5E59-417B-A50D-DC55F56EA9FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD141063-E5B1-4C88-BED3-89CD96C9AF7D}
