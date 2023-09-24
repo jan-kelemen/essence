@@ -3,7 +3,7 @@ using Essence.Domain.Model;
 using Essence.Domain.Services;
 using Essence.Domain.Vocabulary;
 using Essence.WebAPI.Controllers;
-using Essence.WebAPI.Models;
+using Essence.WebAPI.Models.Endpoints;
 using Microsoft.AspNetCore.Http.HttpResults;
 using NSubstitute;
 using System;

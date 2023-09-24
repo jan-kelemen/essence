@@ -6,10 +6,12 @@ namespace Essence.Domain.Infrastructure;
 
 public static class ConfigureServices
 {
-  public static IServiceCollection AddDomainServices(this IServiceCollection services)
-  {
-    services.AddScoped<ICookbookService, CookbookService>();
+    public static IServiceCollection AddDomainServices(this IServiceCollection services)
+    {
+        services.AddScoped<IIngredientService, IngredientService>();
 
-    return services;
-  }
+        services.AddScoped<ICookbookService, CookbookService>();
+
+        return services;
+    }
 }

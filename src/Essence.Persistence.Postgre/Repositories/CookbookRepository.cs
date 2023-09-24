@@ -5,6 +5,7 @@ using Essence.Domain.Model;
 using Essence.Domain.Repositories;
 using Essence.Domain.Services;
 using Essence.Domain.Vocabulary;
+using Essence.Persistence.Postgre.Utility;
 using Npgsql;
 using System;
 using System.Threading.Tasks;
@@ -48,15 +49,16 @@ internal class CookbookRepository : ICookbookRepository
 
         var parameters = new
         {
-            id = Guid.Parse(recipeId.Key)
+            id = recipeId.ToPostgreIdentifier()
         };
 
         try
         {
             using var connection = await _connectionProvider.OpenConnection();
+
             var (id, name, description) = await connection.QuerySingleAsync<(Guid id, string name, string description)>(commandText, parameters);
 
-            return new Recipe(new Identifier(id.ToString()), name)
+            return new Recipe(id.ToDomainIdentifier(), name)
             {
                 Description = description
             };

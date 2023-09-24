@@ -23,7 +23,7 @@ public class PostgreFixture : IDisposable
             Options.Create(options));
     }
 
-    internal PostgreConnectionProvider ConnectionProvider => _connectionProvider!;
+    internal IPostgreConnectionProvider ConnectionProvider => _connectionProvider!;
 
     protected virtual void Dispose(bool disposing)
     {

@@ -9,7 +9,7 @@ namespace Essence.Persistence.Postgre.Test.Integration.Repositories;
 [Collection(nameof(PostgreCollection))]
 public class CookbookRepositoryTests
 {
-    private readonly PostgreConnectionProvider _connectionProvider;
+    private readonly IPostgreConnectionProvider _connectionProvider;
 
     public CookbookRepositoryTests(PostgreFixture postgreFixture)
     {

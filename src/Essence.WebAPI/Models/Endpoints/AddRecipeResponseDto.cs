@@ -1,4 +1,4 @@
-﻿namespace Essence.WebAPI.Models;
+﻿namespace Essence.WebAPI.Models.Endpoints;
 
 public record class AddRecipeResponseDto
 {

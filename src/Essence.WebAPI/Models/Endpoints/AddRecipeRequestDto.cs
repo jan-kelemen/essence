@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Essence.WebAPI.Models;
+namespace Essence.WebAPI.Models.Endpoints;
 
 public class AddRecipeRequestDto
 {

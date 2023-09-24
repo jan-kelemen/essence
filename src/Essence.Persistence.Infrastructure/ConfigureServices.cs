@@ -15,6 +15,8 @@ public static class ConfigureServices
 
         services.AddSingleton<IPostgreConnectionProvider, PostgreConnectionProvider>();
 
+        services.AddScoped<IIngredientRepository, IngredientRepository>();
+
         services.AddScoped<ICookbookRepository, CookbookRepository>();
 
         return services;
