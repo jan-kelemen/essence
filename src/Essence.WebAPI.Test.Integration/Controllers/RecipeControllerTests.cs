@@ -10,11 +10,11 @@ using Xunit;
 
 namespace Essence.WebAPI.Test.Integration.Controllers;
 
-public class CookbookControllerTests : IClassFixture<WebApplicationFactory<Program>>
+public class RecipeControllerTests : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> _factory;
 
-    public CookbookControllerTests(WebApplicationFactory<Program> factory)
+    public RecipeControllerTests(WebApplicationFactory<Program> factory)
     {
         _factory = factory;
     }
@@ -24,7 +24,7 @@ public class CookbookControllerTests : IClassFixture<WebApplicationFactory<Progr
     {
         var client = _factory.CreateClient();
 
-        var response = await client.PutAsJsonAsync("api/Cookbook/AddRecipe", request);
+        var response = await client.PutAsJsonAsync("api/Recipe/AddRecipe", request);
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 
         var details = await response.Content.ReadFromJsonAsync<ValidationProblemDetails>();
@@ -50,7 +50,7 @@ public class CookbookControllerTests : IClassFixture<WebApplicationFactory<Progr
             Name = Guid.NewGuid().ToString()
         };
 
-        var response = await client.PutAsJsonAsync("api/Cookbook/AddRecipe", request);
+        var response = await client.PutAsJsonAsync("api/Recipe/AddRecipe", request);
         Assert.Equal(HttpStatusCode.Created, response.StatusCode);
     }
 
@@ -64,10 +64,10 @@ public class CookbookControllerTests : IClassFixture<WebApplicationFactory<Progr
             Name = Guid.NewGuid().ToString()
         };
 
-        var create = await client.PutAsJsonAsync("api/Cookbook/AddRecipe", request);
+        var create = await client.PutAsJsonAsync("api/Recipe/AddRecipe", request);
         Assert.Equal(HttpStatusCode.Created, create.StatusCode);
 
-        var conflict = await client.PutAsJsonAsync("api/Cookbook/AddRecipe", request);
+        var conflict = await client.PutAsJsonAsync("api/Recipe/AddRecipe", request);
         Assert.Equal(HttpStatusCode.Conflict, conflict.StatusCode);
     }
 
@@ -77,7 +77,7 @@ public class CookbookControllerTests : IClassFixture<WebApplicationFactory<Progr
     {
         var client = _factory.CreateClient();
 
-        var response = await client.GetAsync($"api/Cookbook/GetRecipe/{id}");
+        var response = await client.GetAsync($"api/Recipe/GetRecipe/{id}");
 
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
@@ -91,7 +91,7 @@ public class CookbookControllerTests : IClassFixture<WebApplicationFactory<Progr
         {
             Name = Guid.NewGuid().ToString()
         };
-        var createResponse = await client.PutAsJsonAsync("api/Cookbook/AddRecipe", createRequest);
+        var createResponse = await client.PutAsJsonAsync("api/Recipe/AddRecipe", createRequest);
         Assert.Equal(HttpStatusCode.Created, createResponse.StatusCode);
 
         var response = await client.GetAsync(createResponse.Headers.Location);

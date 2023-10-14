@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace Essence.Persistence.Postgre.Repositories;
 
-internal class CookbookRepository : ICookbookRepository
+internal class RecipeRepository : IRecipeRepository
 {
     private readonly IPostgreConnectionProvider _connectionProvider;
 
-    public CookbookRepository(IPostgreConnectionProvider connectionProvider)
+    public RecipeRepository(IPostgreConnectionProvider connectionProvider)
     {
         _connectionProvider = Ensure.That.IsNotNull(connectionProvider);
     }

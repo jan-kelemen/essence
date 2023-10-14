@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace Essence.Domain.Services.Internal;
 
-internal class CookbookService : ICookbookService
+internal class RecipeService : IRecipeService
 {
-    private readonly ICookbookRepository _cookbookRepository;
+    private readonly IRecipeRepository _recipeRepository;
 
-    public CookbookService(ICookbookRepository cookbookRepository)
+    public RecipeService(IRecipeRepository cookbookRepository)
     {
-        _cookbookRepository = Ensure.That.IsNotNull(cookbookRepository);
+        _recipeRepository = Ensure.That.IsNotNull(cookbookRepository);
     }
 
     public async Task<Result<Identifier, AddRecipeError>> AddRecipe(AddRecipe newRecipe)
     {
-        return await _cookbookRepository.AddRecipe(newRecipe);
+        return await _recipeRepository.AddRecipe(newRecipe);
     }
 
     public async Task<Result<Recipe, GetRecipeError>> GetRecipe(Identifier recipeId)
     {
-        return await _cookbookRepository.GetRecipe(recipeId);
+        return await _recipeRepository.GetRecipe(recipeId);
     }
 }

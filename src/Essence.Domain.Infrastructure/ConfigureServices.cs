@@ -10,7 +10,7 @@ public static class ConfigureServices
     {
         services.AddScoped<IIngredientService, IngredientService>();
 
-        services.AddScoped<ICookbookService, CookbookService>();
+        services.AddScoped<IRecipeService, RecipeService>();
 
         return services;
     }

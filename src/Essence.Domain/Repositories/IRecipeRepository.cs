@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Essence.Domain.Repositories
 {
-    public interface ICookbookRepository
+    public interface IRecipeRepository
     {
         public Task<Result<Identifier, AddRecipeError>> AddRecipe(AddRecipe newRecipe);
 

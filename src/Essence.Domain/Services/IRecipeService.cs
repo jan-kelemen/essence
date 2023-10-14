@@ -27,7 +27,7 @@ public record GetRecipeError
     private GetRecipeError() { }
 }
 
-public interface ICookbookService
+public interface IRecipeService
 {
     public Task<Result<Identifier, AddRecipeError>> AddRecipe(AddRecipe newRecipe);
 

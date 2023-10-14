@@ -4,11 +4,11 @@ using Xunit;
 
 namespace Essence.Domain.Test.Unit.Services.Internal;
 
-public class CookbookServiceTests
+public class RecipeServiceTests
 {
     [Fact]
     public void Constructor_ValidatesInputArguments()
     {
-        Assert.Throws<ArgumentNullException>(() => new CookbookService(null!));
+        Assert.Throws<ArgumentNullException>(() => new RecipeService(null!));
     }
 }

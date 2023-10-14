@@ -17,7 +17,7 @@ public static class ConfigureServices
 
         services.AddScoped<IIngredientRepository, IngredientRepository>();
 
-        services.AddScoped<ICookbookRepository, CookbookRepository>();
+        services.AddScoped<IRecipeRepository, RecipeRepository>();
 
         return services;
     }

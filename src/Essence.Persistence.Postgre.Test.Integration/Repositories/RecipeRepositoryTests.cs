@@ -7,11 +7,11 @@ using Xunit;
 namespace Essence.Persistence.Postgre.Test.Integration.Repositories;
 
 [Collection(nameof(PostgreCollection))]
-public class CookbookRepositoryTests
+public class RecipeRepositoryTests
 {
     private readonly IPostgreConnectionProvider _connectionProvider;
 
-    public CookbookRepositoryTests(PostgreFixture postgreFixture)
+    public RecipeRepositoryTests(PostgreFixture postgreFixture)
     {
         _connectionProvider = postgreFixture.ConnectionProvider;
     }
@@ -19,11 +19,11 @@ public class CookbookRepositoryTests
     [Fact]
     public async void GetRecipe_ReturnsNotFound_GivenNonexistingIdentifier()
     {
-        var cookbookRepository = new CookbookRepository(_connectionProvider);
+        var recipeRepository = new RecipeRepository(_connectionProvider);
 
         var searchedIdentifier = new Identifier(Guid.NewGuid().ToString());
 
-        var recipe = await cookbookRepository.GetRecipe(searchedIdentifier);
+        var recipe = await recipeRepository.GetRecipe(searchedIdentifier);
 
         var notFoundError = Assert.IsType<GetRecipeError.NotFound>(recipe.ExpectError());
         Assert.Equal(searchedIdentifier, notFoundError.Id);
