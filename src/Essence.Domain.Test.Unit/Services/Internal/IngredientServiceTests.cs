@@ -195,7 +195,7 @@ public class IngredientServiceTests
         var request = new UpdatedIngredient(identifier, "Updated Ingredient name", "Updated Summary", "Updated Description");
         var updateResult = await ingredientService.UpdateIngredient(request);
 
-        Assert.False(updateResult.HasValue);
+        Assert.False(updateResult.HasValue());
     }
 
     [Fact]
@@ -223,6 +223,6 @@ public class IngredientServiceTests
         var ingredientService = new IngredientService(ingredientRepository);
 
         var updateResult = await ingredientService.DeleteIngredient(identifier);
-        Assert.False(updateResult.HasValue);
+        Assert.False(updateResult.HasValue());
     }
 }

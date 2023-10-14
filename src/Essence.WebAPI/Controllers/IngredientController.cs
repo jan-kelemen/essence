@@ -75,9 +75,9 @@ public class IngredientController : ControllerBase
     {
         var result = await _ingredientService.UpdateIngredient(new(new(request.Id), request.Name, request.Summary, request.Description));
 
-        if (result.HasValue)
+        if (result.HasValue(out var error))
         {
-            return result.Value() switch
+            return error switch
             {
                 UpdateIngredientError.NotFound => TypedResults.NotFound(),
                 UpdateIngredientError.Conflict => TypedResults.Conflict(),
@@ -95,9 +95,9 @@ public class IngredientController : ControllerBase
     {
         var result = await _ingredientService.DeleteIngredient(new(id));
 
-        if (result.HasValue)
+        if (result.HasValue(out var error))
         {
-            return result.Value() switch
+            return error switch
             {
                 DeleteIngredientError.NotFound => TypedResults.NotFound(),
                 _ => TypedResults.StatusCode(StatusCodes.Status500InternalServerError),

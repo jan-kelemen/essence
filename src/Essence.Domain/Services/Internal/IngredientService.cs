@@ -52,7 +52,7 @@ internal class IngredientService : IIngredientService
                 GetIngredientError.NotFound nf => new UpdateIngredientError.NotFound(nf.Id),
                 _ => throw new NotImplementedException(),
             });
-        if (existingIngredientResult.IsError) { return existingIngredientResult.ExpectError(); }
+        if (existingIngredientResult.ExpectError(out var notFound)) { return notFound; }
 
         var existingIngredient = existingIngredientResult.Expect();
 

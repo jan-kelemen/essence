@@ -9,7 +9,7 @@ public class OptionTests
     public void DefaultConstructed_HasNoValue()
     {
         var option = new Option<int>();
-        Assert.False(option.HasValue);
+        Assert.False(option.HasValue());
         Assert.Throws<OptionException>(() => option.Value());
     }
 
@@ -17,7 +17,7 @@ public class OptionTests
     public void ConstructedFromValue_HasValue()
     {
         var option = new Option<int>(42);
-        Assert.True(option.HasValue);
+        Assert.True(option.HasValue());
         Assert.Equal(42, option.Value());
     }
 
@@ -30,7 +30,7 @@ public class OptionTests
         }
 
         var option = FunctionWithImplicitConversion();
-        Assert.True(option.HasValue);
+        Assert.True(option.HasValue());
         Assert.Equal(42, option.Value());
     }
 }

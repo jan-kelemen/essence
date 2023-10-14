@@ -1,5 +1,6 @@
 ﻿using Essence.Base.Validation;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Essence.Base.Vocabulary;
 
@@ -48,6 +49,17 @@ public sealed class Result<T, E>
         throw new ResultException("Result doesn't contain success variant");
     }
 
+    public bool Expect([NotNullWhen(returnValue: true)] out T? value)
+    {
+        if (_value is ValueHolder.Success success)
+        {
+            value = success.Value!;
+            return true;
+        }
+        value = default;
+        return false;
+    }
+
     public E ExpectError()
     {
         var err = _value as ValueHolder.Error;
@@ -56,16 +68,26 @@ public sealed class Result<T, E>
             return err.Value;
         }
         throw new ResultException("Result doesn't contain error variant");
-    }        
+    }
+
+    public bool ExpectError([NotNullWhen(returnValue: true)] out E? value)
+    {
+        if (_value is ValueHolder.Error err)
+        {
+            value = err.Value!;
+            return true;
+        }
+        value = default;
+        return false;
+    }
 
     public Result<U, E> Map<U>(Func<T, U> map)
     {
         Ensure.That.IsNotNull(map);
 
-        var success = _value as ValueHolder.Success;
-        if (success is not null)
+        if (Expect(out T? value))
         {
-            return new Result<U, E>(new SuccessDiscriminator(), map(success.Value));
+            return new Result<U, E>(new SuccessDiscriminator(), map(value));
         }
         return new Result<U, E>(new ErrorDiscriminator(), ExpectErrorUnchecked());
     }
@@ -74,10 +96,9 @@ public sealed class Result<T, E>
     {
         Ensure.That.IsNotNull(mapError);
 
-        var error = _value as ValueHolder.Error;
-        if (error is not null)
+        if (ExpectError(out E? value))
         {
-            return new Result<T, F>(new ErrorDiscriminator(), mapError(error.Value));
+            return new Result<T, F>(new ErrorDiscriminator(), mapError(value));
         }
         return new Result<T, F>(new SuccessDiscriminator(), ExpectUnchecked());
     }
@@ -85,10 +106,10 @@ public sealed class Result<T, E>
     public U MapOr<U>(Func<T, U> map, U @default)
     {
         Ensure.That.IsNotNull(map);
-        var success = _value as ValueHolder.Success;
-        if (success is not null)
+
+        if (Expect(out T? value))
         {
-            return map(success.Value);
+            return map(value);
         }
         return @default;
     }
@@ -98,10 +119,9 @@ public sealed class Result<T, E>
         Ensure.That.IsNotNull(mapSuccess);
         Ensure.That.IsNotNull(mapError);
 
-        var success = _value as ValueHolder.Success;
-        if (success is not null)
+        if (Expect(out T? value))
         {
-            return mapSuccess(success.Value);
+            return mapSuccess(value);
         }
         return mapError(ExpectError());
     }
