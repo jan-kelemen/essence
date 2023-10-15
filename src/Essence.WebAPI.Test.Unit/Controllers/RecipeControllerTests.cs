@@ -3,7 +3,8 @@ using Essence.Domain.Model;
 using Essence.Domain.Services;
 using Essence.Domain.Vocabulary;
 using Essence.WebAPI.Controllers;
-using Essence.WebAPI.Models.Endpoints;
+using Essence.WebAPI.Models;
+using Essence.WebAPI.Models.Endpoints.Recipe;
 using Microsoft.AspNetCore.Http.HttpResults;
 using NSubstitute;
 using System;
@@ -31,12 +32,12 @@ public class RecipeControllerTests
 
         var controller = new RecipeController(recipeService);
 
-        var request = new AddRecipeRequestDto { Name = "Name" };
+        var request = new AddRecipeRequestDto { Name = "Name", Ingredients = Array.Empty<RecipeIngredientDto>() };
         var response = await controller.AddRecipe(request);
 
-        var expectedResponse = new AddRecipeResponseDto { Id = "Id" };
+        var expectedResponse = new RecipeHeaderDto { Id = "Id", Name = "Name" };
 
-        var createdResponse = Assert.IsType<CreatedAtRoute<AddRecipeResponseDto>>(response);
+        var createdResponse = Assert.IsType<CreatedAtRoute<RecipeHeaderDto>>(response);
         Assert.Equal(expectedResponse, createdResponse.Value);
     }
 
@@ -47,14 +48,14 @@ public class RecipeControllerTests
 
         recipeService
             .AddRecipe(Arg.Any<AddRecipe>())
-            .Returns(new Result<Identifier, AddRecipeError>(new AddRecipeError.Conflict()));
+            .Returns(new Result<Identifier, AddRecipeError>(new AddRecipeError.Conflict(new RecipeHeader(new Identifier("a"), "a"))));
 
         var controller = new RecipeController(recipeService);
 
-        var request = new AddRecipeRequestDto { Name = "Name" };
+        var request = new AddRecipeRequestDto { Name = "Name", Ingredients = Array.Empty<RecipeIngredientDto>() };
         var response = await controller.AddRecipe(request);
         
-        Assert.IsType<Conflict>(response);
+        Assert.IsType<Conflict<RecipeHeaderDto>>(response);
     }
 
     [Fact]
@@ -79,11 +80,11 @@ public class RecipeControllerTests
 
         recipeService
             .GetRecipe(new("Id"))
-            .Returns(new Result<Recipe, GetRecipeError>(new Recipe(new("Id"), "Existing")));
+            .Returns(new Result<Recipe, GetRecipeError>(new Recipe(new(new("Id"), "Existing"))));
 
         var controller = new RecipeController(recipeService);
 
         var response = await controller.GetRecipe("Id");
-        Assert.IsType<Ok>(response);
+        Assert.IsType<Ok<RecipeDto>>(response);
     }
 }

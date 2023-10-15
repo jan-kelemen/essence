@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Essence.Base.Validation;
 using Essence.Domain.Services;
 using Essence.WebAPI.Models;
-using Essence.WebAPI.Models.Endpoints;
+using Essence.WebAPI.Models.Endpoints.Ingredient;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

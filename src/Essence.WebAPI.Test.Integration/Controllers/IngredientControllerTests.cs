@@ -1,5 +1,6 @@
 ﻿using Essence.WebAPI.Models;
 using Essence.WebAPI.Models.Endpoints;
+using Essence.WebAPI.Models.Endpoints.Ingredient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System;

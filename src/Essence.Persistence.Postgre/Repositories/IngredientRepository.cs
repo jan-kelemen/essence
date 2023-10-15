@@ -58,6 +58,20 @@ internal class IngredientRepository : IIngredientRepository
             matchingIngredients.Select(i => new IngredientHeader(i.id.ToDomainIdentifier(), i.name)));
     }
 
+    public async Task<Result<IEnumerable<IngredientHeader>, RepositoryError>> QueryIngredients(IEnumerable<Identifier> identifiers)
+    {
+        var commandText = "SELECT id, name FROM ingredients WHERE id = ANY(@ids)";
+
+        var parameters = new { ids =  identifiers.Select(PostgreIdentifierExtensions.ToPostgreIdentifier).ToArray() };
+
+        using var connection = await _connectionProvider.OpenConnection();
+
+        var matchingIngredients = await connection.QueryAsync<(Guid id, string name)>(commandText, parameters);
+
+        return new Result<IEnumerable<IngredientHeader>, RepositoryError>(
+            matchingIngredients.Select(i => new IngredientHeader(i.id.ToDomainIdentifier(), i.name)));
+    }
+
     public async Task<Result<Identifier, RepositoryError>> AddIngredient(NewIngredient newIngredient)
     {
         var commandText = "INSERT INTO ingredients(name, summary, description) VALUES (@name, @summary, @description) RETURNING id";

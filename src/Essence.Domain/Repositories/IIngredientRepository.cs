@@ -11,6 +11,8 @@ public interface IIngredientRepository
 {
     public Task<Result<Ingredient, RepositoryError>> GetIngredient(Identifier ingredientId);
 
+    public Task<Result<IEnumerable<IngredientHeader>, RepositoryError>> QueryIngredients(IEnumerable<Identifier> identifiers);
+
     public Task<Result<IEnumerable<IngredientHeader>, RepositoryError>> QueryIngredients(string startsWith);
 
     public Task<Result<Identifier, RepositoryError>> AddIngredient(NewIngredient newIngredient);

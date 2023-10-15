@@ -8,6 +8,7 @@ using Essence.Domain.Vocabulary;
 using Essence.WebAPI.Controllers;
 using Essence.WebAPI.Models;
 using Essence.WebAPI.Models.Endpoints;
+using Essence.WebAPI.Models.Endpoints.Ingredient;
 using Microsoft.AspNetCore.Http.HttpResults;
 using NSubstitute;
 using Xunit;

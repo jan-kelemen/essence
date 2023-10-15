@@ -3,9 +3,9 @@ using Essence.Domain.Vocabulary;
 
 namespace Essence.Domain.Model;
 
-public record struct IngredientHeader(Identifier Id, string Name)
+public readonly record struct IngredientHeader(Identifier Id, string Name)
 {
-    public string Name { get; } = Ensure.That.IsNotNullOrWhitespace(Name);
+    public string Name { get; } = Ensure.That.IsNotNullOrWhitespace(Name).Trim();
 }
 
 public class Ingredient

@@ -1,4 +1,5 @@
 ﻿using Essence.Persistence.Postgre.Configuration;
+using Essence.Persistence.Postgre.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System;
@@ -8,6 +9,9 @@ namespace Essence.Persistence.Postgre.Test.Integration;
 public class PostgreFixture : IDisposable
 {
     private PostgreConnectionProvider? _connectionProvider;
+
+    private IngredientRepository _ingredientRepository;
+    private RecipeRepository _recipeRepository;
 
     public PostgreFixture()
     {
@@ -21,9 +25,16 @@ public class PostgreFixture : IDisposable
 
         _connectionProvider = new PostgreConnectionProvider(
             Options.Create(options));
+
+        _ingredientRepository = new IngredientRepository(_connectionProvider);
+        _recipeRepository = new RecipeRepository(_connectionProvider);
     }
 
     internal IPostgreConnectionProvider ConnectionProvider => _connectionProvider!;
+
+    internal IngredientRepository IngredientRepository => _ingredientRepository;
+
+    internal RecipeRepository RecipeRepository => _recipeRepository;
 
     protected virtual void Dispose(bool disposing)
     {
