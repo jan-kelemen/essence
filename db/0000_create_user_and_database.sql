@@ -1,5 +1,0 @@
-CREATE USER essence;
-ALTER USER essence WITH PASSWORD 'essence';
-
-CREATE DATABASE essencepg;
-GRANT ALL PRIVILEGES ON DATABASE essencepg TO essence;

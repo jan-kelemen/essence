@@ -74,8 +74,7 @@ public class IngredientControllerTests
 
         var ingredientController = new IngredientController(ingredientService);
 
-        var request = new QueryIngredientsRequestDto { Prefix = "Ingredient" };
-        var queryResult = await ingredientController.QueryIngredients(request);
+        var queryResult = await ingredientController.QueryIngredients("Ingredient");
         Assert.Equal(expectedIngredients, Assert.IsType<Ok<IEnumerable<IngredientHeaderDto>>>(queryResult).Value!.ToList());
     }
 
