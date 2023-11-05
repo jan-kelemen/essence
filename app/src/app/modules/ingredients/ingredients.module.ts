@@ -3,10 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { IngredientsRoutingModule } from './ingredients-routing.module';
 import { AddIngredientComponent } from './components/add-ingredient/add-ingredient.component';
+import { IngredientsComponent } from './ingredients.component';
+import { IngredientDetailsComponent } from './components/ingredient-details/ingredient-details.component';
 
 @NgModule({
   declarations: [
-    AddIngredientComponent
+    AddIngredientComponent,
+    IngredientsComponent,
+    IngredientDetailsComponent
   ],
   imports: [
     CommonModule,

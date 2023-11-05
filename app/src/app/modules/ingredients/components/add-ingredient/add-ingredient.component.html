@@ -1,1 +1,14 @@
-<p>add-ingredient works!</p>
+<div>
+  <label for="ingredient-name">Name: </label>
+  <input id="ingredient-name" #ingredientName />
+
+  <label for="ingredient-summary">Summary: </label>
+  <input id="ingredient-summary" #ingredientSummary />
+
+  <label for="ingredient-description">Description: </label>
+  <input id="ingredient-description" #ingredientDescription />
+
+  <button type="button" class="add-button" (click)="add(ingredientName.value, ingredientSummary.value, ingredientDescription.value);">
+    Add ingredient
+  </button>
+</div>
