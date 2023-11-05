@@ -172,4 +172,31 @@ public class IngredientControllerTests : IClassFixture<WebApplicationFactory<Pro
         var getResponse = await client.GetAsync($"api/Ingredient/GetIngredient/{ingredientHeader.Id}");
         Assert.Equal(HttpStatusCode.NotFound, getResponse.StatusCode);
     }
+
+    [Fact]
+    public async void QueryIngredients_ReturnsIngredientsMatchingPrefixFilter()
+    {
+        var client = _factory.CreateClient();
+
+        var prefix = Guid.NewGuid().ToString();
+        var request = new AddIngredientRequestDto
+        {
+            Name = $"{prefix}_{nameof(QueryIngredients_ReturnsIngredientsMatchingPrefixFilter)}",
+            Summary = "Summary",
+            Description = "Description",
+        };
+
+        var addResponse = await client.PutAsJsonAsync("api/Ingredient/AddIngredient", request);
+        Assert.Equal(HttpStatusCode.Created, addResponse.StatusCode);
+        var ingredientHeader = await addResponse.Content.ReadFromJsonAsync<IngredientHeaderDto>();
+
+        var queryResponse = await client.GetAsync($"api/Ingredient/QueryIngredients?prefix={prefix}");
+        Assert.Equal(HttpStatusCode.OK, queryResponse.StatusCode);
+        var matchingHeaders = await queryResponse.Content.ReadFromJsonAsync<IEnumerable<IngredientHeaderDto>>();
+
+        Assert.NotNull(matchingHeaders);
+        var queriedHeader = Assert.Single(matchingHeaders);
+
+        Assert.Equal(ingredientHeader.Id, queriedHeader.Id);
+    }
 }
