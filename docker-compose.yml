@@ -9,3 +9,12 @@ services:
       - "5433:5432"
     volumes:
       - ./db/:/docker-entrypoint-initdb.d/
+  api:
+    image: essence_api
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5011:5010"
+    depends_on:
+      - database
