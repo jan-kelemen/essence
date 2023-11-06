@@ -1,20 +1,17 @@
 .grid-header { 
   grid-area: header;
-  text-align: center;
-  font-size: large;
 }
 
-.grid-menu { 
-  grid-area: menu;
+.grid-main { 
+  grid-area: main;
 }
 
-.grid-content { 
-  grid-area: content;
+.grid-main > .sidenav {
+  width: 10vw;
 }
 
 .grid-footer {
   grid-area: footer;
-  text-align: center;
 }
 
 .grid-container {
@@ -22,18 +19,10 @@
   width: 100vw;
   height: 100vh;
   grid-template-areas:
-    'header header'
-    'menu content'
-    'menu footer';
-  grid-template-columns:
-    max-content;
+    'header'
+    'main'
+    'footer';
   grid-template-rows:
     max-content auto max-content;
-  background-color: #535B2F;
-  grid-gap: 5px;
 }
 
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 5px 10px;
-}
