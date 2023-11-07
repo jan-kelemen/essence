@@ -10,7 +10,9 @@ services:
     volumes:
       - ./db/:/docker-entrypoint-initdb.d/
   api:
-    image: essence_api
+    build:
+      context: api
+      dockerfile: Dockerfile
     restart: always
     env_file:
       - .env

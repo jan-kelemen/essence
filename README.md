@@ -11,7 +11,6 @@ Essence__PostgreConnection__ConnectionString=Server=database;Port=5432;Database=
 ```
 
 Common operations
-* Rebuild the WebAPI image `docker build -t essence_api api`
-* Start the database `docker-compose up -d --build`
+* Start the database `docker-compose up`
 * Delete it `docker-compose down`
 * Check runtime logs `docker-compose logs`
