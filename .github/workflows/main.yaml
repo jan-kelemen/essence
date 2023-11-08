@@ -1,4 +1,4 @@
-name: Essence CI
+name: Build
 
 on:
   push:
