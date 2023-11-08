@@ -1,4 +1,4 @@
-# essence
+# essence ![Build](https://github.com/jan-kelemen/essence/actions/workflows/main.yaml/badge.svg)
 Time is the fire in which we burn
 
 ## Run Essence inside Docker
