@@ -2,6 +2,7 @@
 using Essence.Persistence.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Essence.WebAPI;
 
@@ -18,10 +19,10 @@ public class Program
                 name: apiCorsPolicy,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:4200", "https://localhost:4200")
-                      .AllowAnyHeader()
-                      .AllowAnyMethod()
-                      .AllowCredentials();
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
                 });
         });
 
@@ -32,6 +33,14 @@ public class Program
         builder.Services.AddControllers();
         
         var app = builder.Build();
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+        else
+        {
+            app.UseHsts();
+        }
         app.UseHttpsRedirection();
         app.UseCors(apiCorsPolicy);
 

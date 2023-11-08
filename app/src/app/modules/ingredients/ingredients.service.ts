@@ -13,10 +13,11 @@ import { NewIngredient } from './models/new-ingredient.model';
 })
 export class IngredientsService {
 
-  private ingredientsUrl = 'http://127.0.0.1:5011/api/Ingredient';
+  private ingredientsUrl = 'http://localhost:5011/api/Ingredient';
 
   private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders(
+      { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' })
   };
 
   constructor(private http: HttpClient) { }

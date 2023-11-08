@@ -20,3 +20,15 @@ services:
       - "5011:5010"
     depends_on:
       - database
+  app:
+    build:
+      context: app
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "90:80"
+    depends_on:
+      - database
+      - api
