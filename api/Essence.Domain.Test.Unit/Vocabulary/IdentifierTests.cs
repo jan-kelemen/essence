@@ -10,8 +10,8 @@ public class IdentifierTests
     [InlineData(null)]
     [InlineData("")]
     [InlineData("   ")]
-    public void Key_IsNeverEmpty(string key)
+    public void Key_IsNeverEmpty(string? key)
     {
-        Assert.ThrowsAny<ArgumentException>(() => new Identifier(key));
+        Assert.ThrowsAny<ArgumentException>(() => new Identifier(key!));
     }
 }

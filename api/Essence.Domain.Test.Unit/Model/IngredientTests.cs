@@ -10,8 +10,8 @@ public class IngredientTests
     [InlineData(null)]
     [InlineData("")]
     [InlineData("    ")]
-    public void Name_IsNeverEmpty(string name)
+    public void Name_IsNeverEmpty(string? name)
     {
-        Assert.ThrowsAny<ArgumentException>(() => new IngredientHeader(new("ID"), name));
+        Assert.ThrowsAny<ArgumentException>(() => new IngredientHeader(new("ID"), name!));
     }
 }

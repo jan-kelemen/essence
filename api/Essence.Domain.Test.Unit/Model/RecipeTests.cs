@@ -11,9 +11,9 @@ public class RecipeTests
     [InlineData(null)]
     [InlineData("")]
     [InlineData("    ")]
-    public void Name_IsNeverEmpty(string name)
+    public void Name_IsNeverEmpty(string? name)
     {
-        Assert.ThrowsAny<ArgumentException>(() => new RecipeHeader(new("ID"), name));
+        Assert.ThrowsAny<ArgumentException>(() => new RecipeHeader(new("ID"), name!));
     }
 
     [Fact]

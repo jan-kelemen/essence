@@ -154,7 +154,7 @@ public class IngredientRepositoryTests
             "Description");
         var addSecondResult = _repository.AddIngredient(secondIngredient);
 
-        Task.WaitAll(addFirstResult, addSecondResult);
+        await Task.WhenAll(addFirstResult, addSecondResult);
 
         var updatedWithSameNameAsFirst = new Ingredient(
             new(addSecondResult.Result.Expect(), firstIngredient.Name),
