@@ -36,15 +36,12 @@ export class AddIngredientComponent {
   }
 
   onSubmit(): void {
-    console.log('submitted');
     const name = this.addIngredientForm.value.name?.trim();
     const summary = this.addIngredientForm.value.summary?.trim();
     const description = this.addIngredientForm.value.description?.trim();
 
-    console.log('submitted');
     if (!name) { return; }
 
-    console.log('submitted');
     this.ingredientsService.addIngredient({ name, summary, description } as NewIngredient)
       .subscribe((header) => { this.router.navigate([`/ingredients/details/${header.id}`]); });
   }
