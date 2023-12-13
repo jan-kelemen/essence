@@ -1,14 +1,18 @@
-<div>
-  <label for="ingredient-name">Name: </label>
-  <input id="ingredient-name" #ingredientName />
+<form class="form-container" [formGroup]="addIngredientForm" (ngSubmit)="onSubmit()">
+  <h1>Add a new ingredient</h1>
 
-  <label for="ingredient-summary">Summary: </label>
-  <input id="ingredient-summary" #ingredientSummary />
+  <mat-form-field>
+    <mat-label>Name</mat-label> <input matInput formControlName="name">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Summary</mat-label> <input matInput formControlName="summary">
+  </mat-form-field>
 
-  <label for="ingredient-description">Description: </label>
-  <input id="ingredient-description" #ingredientDescription />
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" formControlName="description"></textarea>
+  </mat-form-field>
 
-  <button type="button" class="add-button" (click)="add(ingredientName.value, ingredientSummary.value, ingredientDescription.value);">
-    Add ingredient
-  </button>
-</div>
+  <button mat-flat-button color="accent" type="submit">Add ingredient</button>
+</form>
