@@ -1,14 +1,63 @@
 version: "3.7"
 services:
+  elasticsearch:
+    image: elasticsearch:8.11.3
+    ports:
+      - 9200:9200
+      - 9300:9300
+    restart: on-failure
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+
+  jaeger-query:
+    image: jaegertracing/jaeger-query:1.52
+    ports:
+      - 16685:16685
+      - 16686:16686
+      - 16687:16687
+    restart: on-failure
+    environment:
+      - SPAN_STORAGE_TYPE=elasticsearch
+      - ES_SERVER_URLS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+
+  jaeger-collector:
+    image: jaegertracing/jaeger-collector:1.52
+    ports:
+      - 4317:4317
+      - 4318:4318
+      - 14268:14268
+      - 14269:14269
+    restart: on-failure
+    environment:
+      - SPAN_STORAGE_TYPE=elasticsearch
+      - ES_SERVER_URLS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+
+  hotrod:
+    image: jaegertracing/example-hotrod:latest
+    ports:
+      - 8080:8080
+      - 8083:8083
+    command: ["all"]
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger-collector:4318
+    depends_on:
+      - jaeger-collector
+
   database:
     image: postgres
     restart: always
     env_file:
       - .env
     ports:
-      - "5433:5432"
+      - 5433:5432
     volumes:
       - ./db/:/docker-entrypoint-initdb.d/
+
   api:
     build:
       context: api
@@ -16,10 +65,15 @@ services:
     restart: always
     env_file:
       - .env
+    environment:
+      - OTLP_ENDPOINT_URL=http://jaeger-collector:4318
+      - OTEL_LOG_LEVEL=debug
     ports:
-      - "5011:5010"
+      - 5011:5010
     depends_on:
       - database
+      - jaeger-collector
+
   app:
     build:
       context: app
@@ -28,7 +82,8 @@ services:
     env_file:
       - .env
     ports:
-      - "90:80"
+      - 90:80
     depends_on:
       - database
       - api
+

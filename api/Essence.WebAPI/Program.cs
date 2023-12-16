@@ -3,6 +3,12 @@ using Essence.Persistence.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OpenTelemetry.Extensions.Hosting;
+using OpenTelemetry.Trace;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Exporter;
+using OpenTelemetry.Logs;
+using System;
 
 namespace Essence.WebAPI;
 
@@ -31,7 +37,33 @@ public class Program
         builder.Services.AddDomainServices();
 
         builder.Services.AddControllers();
+
+        var tracingOtlpEndpoint = builder.Configuration["OTLP_ENDPOINT_URL"];
+        var otel = builder.Services.AddOpenTelemetry();
         
+        // Configure OpenTelemetry Resources with the application name
+        otel.ConfigureResource(resource => resource
+            .AddService(serviceName: builder.Environment.ApplicationName));
+        
+        // Add Tracing for ASP.NET Core and our custom ActivitySource and export to Jaeger
+        otel.WithTracing(tracing =>
+        {
+            tracing.AddAspNetCoreInstrumentation();
+            tracing.AddHttpClientInstrumentation();
+            Console.WriteLine(tracingOtlpEndpoint ?? "<NULL>");
+            if (tracingOtlpEndpoint != null)
+            {
+                tracing.AddOtlpExporter(otlpOptions =>
+                 {
+                     otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint);
+                 });
+            }
+//            else
+            {
+                tracing.AddConsoleExporter();
+            }
+        });
+
         var app = builder.Build();
         if (app.Environment.IsDevelopment())
         {
