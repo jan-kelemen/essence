@@ -37,17 +37,6 @@ services:
     depends_on:
       - elasticsearch
 
-  hotrod:
-    image: jaegertracing/example-hotrod:latest
-    ports:
-      - 8080:8080
-      - 8083:8083
-    command: ["all"]
-    environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger-collector:4318
-    depends_on:
-      - jaeger-collector
-
   database:
     image: postgres
     restart: always
@@ -66,8 +55,7 @@ services:
     env_file:
       - .env
     environment:
-      - OTLP_ENDPOINT_URL=http://jaeger-collector:4318
-      - OTEL_LOG_LEVEL=debug
+      - OTLP_ENDPOINT_URL=http://jaeger-collector:4317
     ports:
       - 5011:5010
     depends_on:
