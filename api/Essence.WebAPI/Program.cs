@@ -41,11 +41,9 @@ public class Program
         var tracingOtlpEndpoint = builder.Configuration["OTLP_ENDPOINT_URL"];
         var otel = builder.Services.AddOpenTelemetry();
         
-        // Configure OpenTelemetry Resources with the application name
         otel.ConfigureResource(resource => resource
             .AddService(serviceName: builder.Environment.ApplicationName));
         
-        // Add Tracing for ASP.NET Core and our custom ActivitySource and export to Jaeger
         otel.WithTracing(tracing =>
         {
             tracing.AddAspNetCoreInstrumentation();
@@ -58,7 +56,7 @@ public class Program
                      otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint);
                  });
             }
-//            else
+            else
             {
                 tracing.AddConsoleExporter();
             }
