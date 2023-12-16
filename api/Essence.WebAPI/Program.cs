@@ -50,7 +50,6 @@ public class Program
             tracing.AddHttpClientInstrumentation();
             if (tracingOtlpEndpoint != null)
             {
-                Console.WriteLine(tracingOtlpEndpoint ?? "<NULL>");
                 tracing.AddOtlpExporter(otlpOptions =>
                  {
                      otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint);
