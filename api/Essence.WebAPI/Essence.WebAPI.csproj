@@ -5,10 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="OpenTelemetry.Exporter.Console" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Essence.Base\Essence.Base.csproj" />
     <ProjectReference Include="..\Essence.Domain.Infrastructure\Essence.Domain.Infrastructure.csproj" />
     <ProjectReference Include="..\Essence.Domain\Essence.Domain.csproj" />
     <ProjectReference Include="..\Essence.Persistence.Infrastructure\Essence.Persistence.Infrastructure.csproj" />
   </ItemGroup>
-
 </Project>
