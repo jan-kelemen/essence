@@ -3,7 +3,6 @@ using Essence.Persistence.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OpenTelemetry.Extensions.Hosting;
 using OpenTelemetry.Trace;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Exporter;
@@ -51,9 +50,10 @@ public class Program
             if (tracingOtlpEndpoint != null)
             {
                 tracing.AddOtlpExporter(otlpOptions =>
-                 {
+                {
                      otlpOptions.Endpoint = new Uri(tracingOtlpEndpoint);
-                 });
+                     otlpOptions.Protocol = OtlpExportProtocol.HttpProtobuf;
+                });
             }
             else
             {
