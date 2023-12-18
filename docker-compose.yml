@@ -9,6 +9,7 @@ services:
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 
   jaeger-query:
     image: jaegertracing/jaeger-query:1.52
