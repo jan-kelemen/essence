@@ -10,6 +10,11 @@ services:
       - discovery.type=single-node
       - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    healthcheck:
+      test: curl -s http://elasticsearch:9200 >/dev/null || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 50
 
   jaeger-query:
     image: jaegertracing/jaeger-query:1.52
@@ -22,7 +27,8 @@ services:
       - SPAN_STORAGE_TYPE=elasticsearch
       - ES_SERVER_URLS=http://elasticsearch:9200
     depends_on:
-      - elasticsearch
+      elasticsearch:
+        condition: service_healthy
 
   jaeger-collector:
     image: jaegertracing/jaeger-collector:1.52
@@ -34,7 +40,8 @@ services:
       - SPAN_STORAGE_TYPE=elasticsearch
       - ES_SERVER_URLS=http://elasticsearch:9200
     depends_on:
-      - elasticsearch
+      elasticsearch:
+        condition: service_healthy
 
   postgres:
     image: postgres
@@ -61,6 +68,7 @@ services:
     depends_on:
       - postgres
       - jaeger-collector
+      
 
   app:
     build:
