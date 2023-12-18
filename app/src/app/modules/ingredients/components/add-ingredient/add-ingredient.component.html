@@ -1,5 +1,5 @@
 <form class="form-container" [formGroup]="addIngredientForm" (ngSubmit)="onSubmit()">
-  <h1>Add a new ingredient</h1>
+  <h1>Add new ingredient</h1>
 
   <mat-form-field>
     <mat-label>Name</mat-label> <input matInput formControlName="name">
@@ -14,5 +14,5 @@
     <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" formControlName="description"></textarea>
   </mat-form-field>
 
-  <button mat-flat-button color="accent" type="submit">Add ingredient</button>
+  <button mat-flat-button color="accent" type="submit">Add</button>
 </form>
