@@ -26,9 +26,7 @@ services:
   jaeger-collector:
     image: jaegertracing/jaeger-collector:1.52
     ports:
-      - 4317:4317
       - 4318:4318
-      - 14268:14268
       - 14269:14269
     restart: on-failure
     environment:
@@ -37,7 +35,7 @@ services:
     depends_on:
       - elasticsearch
 
-  database:
+  postgres:
     image: postgres
     restart: always
     env_file:
@@ -55,11 +53,12 @@ services:
     env_file:
       - .env
     environment:
-      - OTLP_ENDPOINT_URL=http://jaeger-collector:4317
+      - OTLP_ENDPOINT_URL=http://jaeger-collector:4318/v1/traces
+      - Essence__PostgreConnection__ConnectionString=Server=postgres;Port=5432;Database=${POSTGRES_DB};User Id=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
     ports:
       - 5011:5010
     depends_on:
-      - database
+      - postgres
       - jaeger-collector
 
   app:
@@ -72,6 +71,5 @@ services:
     ports:
       - 90:80
     depends_on:
-      - database
       - api
 
