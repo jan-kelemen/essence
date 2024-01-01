@@ -21,7 +21,7 @@ export class IngredientDetailsComponent {
     this.ingredient$ = this.route.params.pipe(
       take(1),
       switchMap(params => {
-        const ingredientId = params['ingredientId'];
+        const ingredientId = params['id'];
         return this.ingredientsService.getIngredient(ingredientId);
       }));
   }

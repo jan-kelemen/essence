@@ -8,8 +8,8 @@ import { IngredientDetailsComponent } from './components/ingredient-details/ingr
 const routes: Routes = [
   { path: '', redirectTo: 'add', pathMatch: 'full' },
   { path: 'add', component: AddIngredientComponent },
-  { path: 'edit/:ingredientId', component: EditIngredientComponent },
-  { path: 'details/:ingredientId', component: IngredientDetailsComponent },
+  { path: 'edit/:id', component: EditIngredientComponent },
+  { path: 'details/:id', component: IngredientDetailsComponent },
 ];
 
 @NgModule({

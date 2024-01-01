@@ -1,7 +1,7 @@
 <div *ngIf="ingredient$ | async as ingredient" class="details-container">
   <h2>{{ ingredient.name }}</h2>
   <h4>{{ ingredient.summary }}</h4>
-  <pre>{{ ingredient.description }}</pre>
+  <span class="mat-body">{{ ingredient.description }}</span>
 
   <button mat-flat-button color="accent" [routerLink]="['/ingredients/edit/', ingredient.id ]">Edit</button>
 </div>

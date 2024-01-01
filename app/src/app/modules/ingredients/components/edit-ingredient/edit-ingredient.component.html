@@ -1,16 +1,16 @@
-<form *ngIf="ingredient$ | async as ingredient" class="form-container" [formGroup]="editIngredientForm" (ngSubmit)="onSubmit()">
-  <h1>Edit ingredient {{ ingredient!.name }}</h1>
+<form *ngIf="ingredient$ | async as ingredient" class="form-container" [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
+  <h1>Edit ingredient {{ ingredient.name }}</h1>
 
-  <input type="hidden" formControlName="id" value="{{ingredient.id}}">
+  <input type="hidden" formControlName="id">
 
   <mat-form-field>
     <mat-label>Name</mat-label>
-    <input matInput formControlName="name" value="{{ingredient.name}}">
+    <input matInput formControlName="name">
   </mat-form-field>
   
   <mat-form-field>
     <mat-label>Summary</mat-label>
-    <input matInput formControlName="summary" value="{{ingredient.summary}}">
+    <input matInput formControlName="summary">
   </mat-form-field>
 
   <mat-form-field>
@@ -19,8 +19,7 @@
       matInput 
       cdkTextareaAutosize
       #autosize="cdkTextareaAutosize"
-      formControlName="description"
-      value="{{ingredient.description}}"></textarea>
+      formControlName="description"></textarea>
   </mat-form-field>
 
   <button mat-flat-button color="accent" type="submit">Save</button>

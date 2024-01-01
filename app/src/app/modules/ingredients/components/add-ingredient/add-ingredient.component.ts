@@ -17,7 +17,7 @@ import { NewIngredient } from '../../models/new-ingredient.model';
 export class AddIngredientComponent {
   @ViewChild('autosize') autosize?: CdkTextareaAutosize;
 
-  addIngredientForm = this.formBuilder.group({
+  ingredientForm = this.formBuilder.group({
     name: '',
     summary: '',
     description: ''
@@ -36,9 +36,9 @@ export class AddIngredientComponent {
   }
 
   onSubmit(): void {
-    const name = this.addIngredientForm.value.name?.trim();
-    const summary = this.addIngredientForm.value.summary?.trim();
-    const description = this.addIngredientForm.value.description?.trim();
+    const name = this.ingredientForm.value.name?.trim();
+    const summary = this.ingredientForm.value.summary?.trim();
+    const description = this.ingredientForm.value.description?.trim();
 
     if (!name) { return; }
 

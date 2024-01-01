@@ -20,7 +20,7 @@ export class EditIngredientComponent {
 
   @ViewChild('autosize') autosize?: CdkTextareaAutosize;
 
-  editIngredientForm = this.formBuilder.group({
+  ingredientForm = this.formBuilder.group({
     id: '',
     name: '',
     summary: '',
@@ -37,11 +37,11 @@ export class EditIngredientComponent {
     this.ingredient$ = this.route.params.pipe(
       take(1),
       switchMap(params => {
-        const ingredientId = params['ingredientId'];
+        const ingredientId = params['id'];
         return this.ingredientsService.getIngredient(ingredientId);
       }),
       tap(ingredient => {
-        this.editIngredientForm.patchValue({
+        this.ingredientForm.patchValue({
           id: ingredient.id,
           name: ingredient.name,
           summary: ingredient.summary,
@@ -56,10 +56,10 @@ export class EditIngredientComponent {
   }
 
   onSubmit(): void {
-    const id = this.editIngredientForm.value.id?.trim();
-    const name = this.editIngredientForm.value.name?.trim();
-    const summary = this.editIngredientForm.value.summary?.trim();
-    const description = this.editIngredientForm.value.description?.trim();
+    const id = this.ingredientForm.value.id?.trim();
+    const name = this.ingredientForm.value.name?.trim();
+    const summary = this.ingredientForm.value.summary?.trim();
+    const description = this.ingredientForm.value.description?.trim();
 
     if (!name) { return; }
 
