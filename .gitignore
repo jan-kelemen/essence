@@ -3,3 +3,5 @@ obj/
 .vs/
 *.user
 .env
+*.sw[a-p]
+.idea/
