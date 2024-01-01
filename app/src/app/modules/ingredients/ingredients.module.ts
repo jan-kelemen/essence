@@ -7,6 +7,7 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 
 import { IngredientsRoutingModule } from './ingredients-routing.module';
 import { AddIngredientComponent } from './components/add-ingredient/add-ingredient.component';
@@ -29,6 +30,7 @@ import { IngredientDetailsComponent } from './components/ingredient-details/ingr
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule
   ]
 })
 export class IngredientsModule { }

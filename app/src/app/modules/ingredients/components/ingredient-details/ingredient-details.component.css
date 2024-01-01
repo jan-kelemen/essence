@@ -1,6 +1,9 @@
-.details-container {
+.ingredient-card {
   display: flex;
   flex-direction: column;
   margin: 5px;
 }
 
+.ingredient-description {
+  white-space: pre-line;
+}
