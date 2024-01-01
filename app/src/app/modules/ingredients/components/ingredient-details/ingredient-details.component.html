@@ -1,4 +1,4 @@
-<div *ngIf="ingredient" class="details-container">
+<div *ngIf="ingredient$ | async as ingredient" class="details-container">
   <h2>{{ ingredient.name }}</h2>
   <h4>{{ ingredient.summary }}</h4>
   <pre>{{ ingredient.description }}</pre>

@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 
-import { take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { take, switchMap, tap} from 'rxjs/operators';
 
 import { IngredientsService } from '../../ingredients.service';
 import { Ingredient } from '../../models/ingredient.model';
@@ -15,11 +16,12 @@ import { Ingredient } from '../../models/ingredient.model';
   styleUrls: ['./edit-ingredient.component.css']
 })
 export class EditIngredientComponent {
-  ingredient: Ingredient | undefined;
+  ingredient$: Observable<Ingredient>;
 
   @ViewChild('autosize') autosize?: CdkTextareaAutosize;
 
   editIngredientForm = this.formBuilder.group({
+    id: '',
     name: '',
     summary: '',
     description: ''
@@ -31,20 +33,22 @@ export class EditIngredientComponent {
     private formBuilder: FormBuilder,
     private ingredientsService: IngredientsService,
     private _ngZone: NgZone) {
-
-    const routeParams = this.route.snapshot.paramMap;
-    const ingredientId = routeParams.get('ingredientId');
-  
-    this.ingredientsService.getIngredient(ingredientId!)
-      .subscribe(i => {
-        this.ingredient = i;
-
-        this.editIngredientForm.setValue({
-          name: i!.name,
-          summary: i!.summary!,
-          description:  i!.description!,
+ 
+    this.ingredient$ = this.route.params.pipe(
+      take(1),
+      switchMap(params => {
+        const ingredientId = params['ingredientId'];
+        return this.ingredientsService.getIngredient(ingredientId);
+      }),
+      tap(ingredient => {
+        this.editIngredientForm.patchValue({
+          id: ingredient.id,
+          name: ingredient.name,
+          summary: ingredient.summary,
+          description: ingredient.description
         })
-      });
+      })
+    );
   }
 
   triggerResize() {
@@ -52,13 +56,14 @@ export class EditIngredientComponent {
   }
 
   onSubmit(): void {
+    const id = this.editIngredientForm.value.id?.trim();
     const name = this.editIngredientForm.value.name?.trim();
     const summary = this.editIngredientForm.value.summary?.trim();
     const description = this.editIngredientForm.value.description?.trim();
 
     if (!name) { return; }
 
-    this.ingredientsService.updateIngredient({ id: this.ingredient!.id, name, summary, description } as Ingredient)
-      .subscribe((header) => { this.router.navigate([`/ingredients/details/${this.ingredient!.id}`]); });
+    this.ingredientsService.updateIngredient({ id, name, summary, description } as Ingredient)
+      .subscribe((header) => { this.router.navigate([`/ingredients/details/${id}`]); });
   }
 }

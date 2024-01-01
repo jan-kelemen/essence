@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { IngredientsService } from '../../ingredients.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, switchMap, take } from 'rxjs';
+
+import { IngredientsService } from '../../ingredients.service';
 import { Ingredient } from '../../models/ingredient.model';
 
 @Component({
@@ -9,16 +11,18 @@ import { Ingredient } from '../../models/ingredient.model';
   templateUrl: './ingredient-details.component.html',
   styleUrls: ['./ingredient-details.component.css']
 })
-export class IngredientDetailsComponent implements OnInit {
-  ingredient: Ingredient | undefined;
+export class IngredientDetailsComponent {
+  ingredient$: Observable<Ingredient>;
 
-  constructor(private route: ActivatedRoute, private ingredientService: IngredientsService) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private ingredientsService: IngredientsService) {
 
-  ngOnInit(): void {
-    const routeParams = this.route.snapshot.paramMap;
-    const ingredientId = routeParams.get('ingredientId');
-  
-    this.ingredientService.getIngredient(ingredientId!)
-      .subscribe(i => this.ingredient = i);
+    this.ingredient$ = this.route.params.pipe(
+      take(1),
+      switchMap(params => {
+        const ingredientId = params['ingredientId'];
+        return this.ingredientsService.getIngredient(ingredientId);
+      }));
   }
 }
