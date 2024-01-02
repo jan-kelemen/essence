@@ -1,0 +1,6 @@
+<div *ngIf="error$ | async as error" class="notification-box">
+  <span class="mat-h3">Hello {{ error }}!</span>
+  <button mat-mini-fab color="warn" (click)="clearError()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>

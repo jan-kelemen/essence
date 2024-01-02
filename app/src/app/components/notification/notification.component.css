@@ -1,0 +1,16 @@
+.notification-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin: 5px;
+  padding: 5px 10px;
+  border: 2px solid #FF3333;
+  border-radius: 5px;
+  background-color: #ff8d66;
+}
+
+.notification-box > span {
+  margin: 0px;
+}
