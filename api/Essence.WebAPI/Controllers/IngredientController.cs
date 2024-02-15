@@ -39,9 +39,9 @@ public class IngredientController : ControllerBase
 
     [HttpGet("QueryIngredients")]
     [ProducesResponseType(typeof(IEnumerable<IngredientHeaderDto>), StatusCodes.Status200OK)]
-    public async Task<IResult> QueryIngredients([FromQuery] string prefix)
+    public async Task<IResult> QueryIngredients([FromQuery] string? prefix)
     {
-        var result = await _ingredientService.QueryIngredients(prefix);
+        var result = await _ingredientService.QueryIngredients(prefix ?? string.Empty);
 
         return result.MapOrElse<IResult>(
             s => TypedResults.Ok(s.Select(i => new IngredientHeaderDto(i.Id.Key, i.Name))),

@@ -1,1 +1,7 @@
-<p>ingredients works!</p>
+<div class="form-container">
+  <h1>Ingredients</h1>
+  
+  <mat-nav-list>
+    <a mat-list-item [routerLink]="['/ingredients/details/', ingredient.id ]" *ngFor="let ingredient of ingredients$ | async as ingredients"> {{ ingredient.name }} </a>
+  </mat-nav-list>
+</div>

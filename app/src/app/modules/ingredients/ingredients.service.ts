@@ -33,12 +33,10 @@ export class IngredientsService {
   queryIngredients(prefix?: string): Observable<IngredientHeader[]> {
     const action = 'QueryIngredients';
 
-    let params = new HttpParams();
-    if (prefix != null) {
-      params.append("prefix", prefix);
-    }
+    let params =
+      new HttpParams().append("prefix", prefix ?? "");
 
-    return this.http.get<IngredientHeader[]>(`${this.ingredientsUrl}/${action}`, { params, ...this.httpOptions })
+    return this.http.get<IngredientHeader[]>(`${this.ingredientsUrl}/${action}`, { params: params, ...this.httpOptions})
       .pipe(catchError(this.handleError<IngredientHeader[]>(action, [])));
   }
 
