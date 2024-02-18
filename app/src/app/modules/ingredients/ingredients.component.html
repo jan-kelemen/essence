@@ -1,7 +1,17 @@
-<div class="form-container">
-  <h1>Ingredients</h1>
-  
-  <mat-nav-list>
-    <a mat-list-item [routerLink]="['/ingredients/details/', ingredient.id ]" *ngFor="let ingredient of ingredients$ | async as ingredients"> {{ ingredient.name }} </a>
-  </mat-nav-list>
-</div>
+<mat-card class="ingredients-card">
+  <mat-card-content>
+    <mat-nav-list>
+      <div class="ingredient-line" *ngFor="let ingredient of ingredients$ | async as ingredients">
+        <mat-list-item>
+          <a [routerLink]="['/ingredients/details/', ingredient.id ]">{{ ingredient.name }}</a>
+        </mat-list-item>
+        <button mat-flat-button color="warn" (click)="onDelete(ingredient.id)">
+          Delete
+        </button>
+      </div>
+    </mat-nav-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button color="accent" [routerLink]="['/ingredients/add/' ]">Add</button>
+  </mat-card-actions>
+</mat-card>
