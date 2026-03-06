@@ -1,26 +1,23 @@
-<form *ngIf="ingredient$ | async as ingredient" class="form-container" [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
-  <h1>Edit ingredient {{ ingredient.name }}</h1>
-
-  <input type="hidden" formControlName="id">
-
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput formControlName="name">
-  </mat-form-field>
-  
-  <mat-form-field>
-    <mat-label>Summary</mat-label>
-    <input matInput formControlName="summary">
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Description</mat-label>
-    <textarea 
-      matInput 
-      cdkTextareaAutosize
-      #autosize="cdkTextareaAutosize"
+@if (ingredient$ | async; as ingredient) {
+  <form class="form-container" [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
+    <h1>Edit ingredient {{ ingredient.name }}</h1>
+    <input type="hidden" formControlName="id">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Summary</mat-label>
+      <input matInput formControlName="summary">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
       formControlName="description"></textarea>
-  </mat-form-field>
-
-  <button mat-flat-button color="accent" type="submit">Save</button>
-</form>
+    </mat-form-field>
+    <button mat-flat-button color="accent" type="submit">Save</button>
+  </form>
+}

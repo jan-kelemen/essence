@@ -1,12 +1,14 @@
-<mat-card *ngIf="ingredient$ | async as ingredient" class="ingredient-card">
-  <mat-card-header>
-    <mat-card-title>{{ ingredient.name }}</mat-card-title>
-    <mat-card-subtitle>{{ ingredient.summary }}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content class="ingredient-description">
-    <p>{{ ingredient.description }}</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-flat-button color="accent" [routerLink]="['/ingredients/edit/', ingredient.id ]">Edit</button>
-  </mat-card-actions>
-</mat-card>
+@if (ingredient$ | async; as ingredient) {
+  <mat-card class="ingredient-card">
+    <mat-card-header>
+      <mat-card-title>{{ ingredient.name }}</mat-card-title>
+      <mat-card-subtitle>{{ ingredient.summary }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="ingredient-description">
+      <p>{{ ingredient.description }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="accent" [routerLink]="['/ingredients/edit/', ingredient.id ]">Edit</button>
+    </mat-card-actions>
+  </mat-card>
+}

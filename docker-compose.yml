@@ -1,7 +1,6 @@
-version: "3.7"
 services:
   elasticsearch:
-    image: elasticsearch:8.11.3
+    image: elasticsearch:9.3.1
     ports:
       - 9200:9200
       - 9300:9300
@@ -17,7 +16,7 @@ services:
       retries: 50
 
   jaeger-query:
-    image: jaegertracing/jaeger-query:1.52
+    image: jaegertracing/jaeger-query:1.76.0
     ports:
       - 16685:16685
       - 16686:16686
@@ -31,7 +30,7 @@ services:
         condition: service_healthy
 
   jaeger-collector:
-    image: jaegertracing/jaeger-collector:1.52
+    image: jaegertracing/jaeger-collector:1.76.0
     ports:
       - 4318:4318
       - 14269:14269

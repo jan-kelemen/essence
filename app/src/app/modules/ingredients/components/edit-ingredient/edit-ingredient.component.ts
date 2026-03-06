@@ -11,9 +11,10 @@ import { IngredientsService } from '../../ingredients.service';
 import { Ingredient } from '../../models/ingredient.model';
 
 @Component({
-  selector: 'app-edit-ingredient',
-  templateUrl: './edit-ingredient.component.html',
-  styleUrls: ['./edit-ingredient.component.css']
+    selector: 'app-edit-ingredient',
+    templateUrl: './edit-ingredient.component.html',
+    styleUrls: ['./edit-ingredient.component.css'],
+    standalone: false
 })
 export class EditIngredientComponent {
   ingredient$: Observable<Ingredient>;

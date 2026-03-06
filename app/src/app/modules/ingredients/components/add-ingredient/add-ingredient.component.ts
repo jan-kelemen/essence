@@ -10,9 +10,10 @@ import { IngredientsService } from '../../ingredients.service';
 import { NewIngredient } from '../../models/new-ingredient.model';
 
 @Component({
-  selector: 'app-add-ingredient',
-  templateUrl: './add-ingredient.component.html',
-  styleUrls: ['./add-ingredient.component.css']
+    selector: 'app-add-ingredient',
+    templateUrl: './add-ingredient.component.html',
+    styleUrls: ['./add-ingredient.component.css'],
+    standalone: false
 })
 export class AddIngredientComponent {
   @ViewChild('autosize') autosize?: CdkTextareaAutosize;

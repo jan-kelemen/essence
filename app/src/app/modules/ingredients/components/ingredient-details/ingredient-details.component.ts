@@ -7,9 +7,10 @@ import { IngredientsService } from '../../ingredients.service';
 import { Ingredient } from '../../models/ingredient.model';
 
 @Component({
-  selector: 'app-ingredient-details',
-  templateUrl: './ingredient-details.component.html',
-  styleUrls: ['./ingredient-details.component.css']
+    selector: 'app-ingredient-details',
+    templateUrl: './ingredient-details.component.html',
+    styleUrls: ['./ingredient-details.component.css'],
+    standalone: false
 })
 export class IngredientDetailsComponent {
   ingredient$: Observable<Ingredient>;

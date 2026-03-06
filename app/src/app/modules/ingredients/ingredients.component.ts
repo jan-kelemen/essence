@@ -5,9 +5,10 @@ import { IngredientHeader } from './models/ingredient-header.model';
 import { Observable, Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-ingredients',
-  templateUrl: './ingredients.component.html',
-  styleUrls: ['./ingredients.component.css']
+    selector: 'app-ingredients',
+    templateUrl: './ingredients.component.html',
+    styleUrls: ['./ingredients.component.css'],
+    standalone: false
 })
 export class IngredientsComponent {
   list = [];

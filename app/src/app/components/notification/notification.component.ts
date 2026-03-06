@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { NotificationInternalService } from '../../services/notification-internal.service';
 
 @Component({
-  selector: 'notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.css'],
+    selector: 'notification',
+    templateUrl: './notification.component.html',
+    styleUrls: ['./notification.component.css'],
+    standalone: false
 })
 export class NotificationComponent {
   error$ = this.service.error$;
