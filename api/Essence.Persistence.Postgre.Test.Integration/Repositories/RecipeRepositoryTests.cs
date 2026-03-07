@@ -5,6 +5,7 @@ using Essence.Domain.Vocabulary;
 using Essence.Persistence.Postgre.Repositories;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Essence.Persistence.Postgre.Test.Integration.Repositories;
@@ -26,7 +27,7 @@ public class RecipeRepositoryTests
     }
 
     [Fact]
-    public async void AddRecipe_ReturnsConflict_WhenRecipeOfTheSameNameExists()
+    public async Task AddRecipe_ReturnsConflict_WhenRecipeOfTheSameNameExists()
     {
         var ingredients = await DataGenerator.GenerateIngredients(
             _ingredientRepository,
@@ -50,7 +51,7 @@ public class RecipeRepositoryTests
     }
 
     [Fact]
-    public async void AddRecipe_ReturnsUnknownIngredient_WhenRecipeIngredientIsMissing()
+    public async Task AddRecipe_ReturnsUnknownIngredient_WhenRecipeIngredientIsMissing()
     {
         var ingredients = await DataGenerator.GenerateIngredients(
             _ingredientRepository,
@@ -67,7 +68,7 @@ public class RecipeRepositoryTests
     }
 
     [Fact]
-    public async void AddRecipe_Works()
+    public async Task AddRecipe_Works()
     {
         var ingredients = await DataGenerator.GenerateIngredients(
             _ingredientRepository,
@@ -83,7 +84,7 @@ public class RecipeRepositoryTests
     }
 
     [Fact]
-    public async void GetRecipe_ReturnsNotFound_GivenNonexistingIdentifier()
+    public async Task GetRecipe_ReturnsNotFound_GivenNonexistingIdentifier()
     {
         var searchedIdentifier = new Identifier(Guid.NewGuid().ToString());
 
@@ -94,7 +95,7 @@ public class RecipeRepositoryTests
     }
 
     [Fact]
-    public async void GetRecipe_Works()
+    public async Task GetRecipe_Works()
     {
         var ingredients = await DataGenerator.GenerateIngredients(
             _ingredientRepository,

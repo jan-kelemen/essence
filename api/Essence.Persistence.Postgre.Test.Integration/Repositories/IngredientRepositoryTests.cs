@@ -25,7 +25,7 @@ public class IngredientRepositoryTests
     }
 
     [Fact]
-    public async void GetIngredient_ReturnsNotFound_GivenNonexistingIdentifier()
+    public async Task GetIngredient_ReturnsNotFound_GivenNonexistingIdentifier()
     {
         var searchedIdentifier = new Identifier(Guid.NewGuid().ToString());
 
@@ -36,11 +36,11 @@ public class IngredientRepositoryTests
     }
 
     [Fact]
-    public async void QueryIngredients_ReturnsAllIngredients_MatchingFilter()
+    public async Task QueryIngredients_ReturnsAllIngredients_MatchingFilter()
     {
         var namePrefix = $"{nameof(QueryIngredients_ReturnsAllIngredients_MatchingFilter)}_{Guid.NewGuid()}";
 
-        var expectedHeaders = await DataGenerator.GenerateIngredients(_repository, namePrefix, 9); 
+        var expectedHeaders = await DataGenerator.GenerateIngredients(_repository, namePrefix, 9);
 
         var queryResult = (await _repository.QueryIngredients(namePrefix)).Expect()
             .OrderBy(i => i.Name)
@@ -50,7 +50,7 @@ public class IngredientRepositoryTests
     }
 
     [Fact]
-    public async void QueryIngredients_ReturnsAllIngredients_WithMatchingIdentifier()
+    public async Task QueryIngredients_ReturnsAllIngredients_WithMatchingIdentifier()
     {
         var namePrefix = $"{nameof(QueryIngredients_ReturnsAllIngredients_WithMatchingIdentifier)}_{Guid.NewGuid()}";
 
@@ -66,7 +66,7 @@ public class IngredientRepositoryTests
     }
 
     [Fact]
-    public async void QueryIngredients_Succeeds_WithNonexistingIdentifier()
+    public async Task QueryIngredients_Succeeds_WithNonexistingIdentifier()
     {
         var idFilter = new[] { new Identifier(Guid.NewGuid().ToString()) };
 
@@ -76,7 +76,7 @@ public class IngredientRepositoryTests
     }
 
     [Fact]
-    public async void AddIngredient_ReturnsIdentifier_GivenNewIngredient()
+    public async Task AddIngredient_ReturnsIdentifier_GivenNewIngredient()
     {
         var newIngredient = new NewIngredient(Guid.NewGuid().ToString(), null, null);
 
@@ -86,7 +86,7 @@ public class IngredientRepositoryTests
     }
 
     [Fact]
-    public async void AddIngredient_ReturnsConflictError_GivenIngredientWithAlreadyExistingName()
+    public async Task AddIngredient_ReturnsConflictError_GivenIngredientWithAlreadyExistingName()
     {
         var newIngredient = new NewIngredient(
             Guid.NewGuid().ToString(),
@@ -108,7 +108,7 @@ public class IngredientRepositoryTests
     }
 
     [Fact]
-    public async void UpdateIngredient_ReturnsZeroAffectedRows_GivenNonexistingIngredient()
+    public async Task UpdateIngredient_ReturnsZeroAffectedRows_GivenNonexistingIngredient()
     {
         var ingredient = new Ingredient(
             new(new(Guid.NewGuid().ToString()), Guid.NewGuid().ToString()),
@@ -120,7 +120,7 @@ public class IngredientRepositoryTests
     }
 
     [Fact]
-    public async void UpdateIngredient_ReturnsOneAffectedRow_GivenExistingIngredient()
+    public async Task UpdateIngredient_ReturnsOneAffectedRow_GivenExistingIngredient()
     {
         var newIngredient = new NewIngredient(
             Guid.NewGuid().ToString(),
@@ -140,7 +140,7 @@ public class IngredientRepositoryTests
     }
 
     [Fact]
-    public async void UpdateIngredient_ReturnsConflictError_GivenUpdatedIngredientOfExistingName()
+    public async Task UpdateIngredient_ReturnsConflictError_GivenUpdatedIngredientOfExistingName()
     {
         var firstIngredient = new NewIngredient(
             Guid.NewGuid().ToString(),
@@ -167,14 +167,14 @@ public class IngredientRepositoryTests
     }
 
     [Fact]
-    public async void DeleteIngredient_ReturnsZeroAffectedRows_GivenNonexistingIngredient()
+    public async Task DeleteIngredient_ReturnsZeroAffectedRows_GivenNonexistingIngredient()
     {
         var deleteResult = await _repository.DeleteIngredient(new(Guid.NewGuid().ToString()));
         Assert.Equal(0, deleteResult.Expect());
     }
 
     [Fact]
-    public async void DeleteIngredient_ReturnsOneAffectedRow_GivenExistingIngredient()
+    public async Task DeleteIngredient_ReturnsOneAffectedRow_GivenExistingIngredient()
     {
         var newIngredient = new NewIngredient(
             Guid.NewGuid().ToString(),

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json.Nodes;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Essence.WebAPI.Test.Integration.Controllers;
@@ -30,7 +31,7 @@ public class RecipeControllerTests : IClassFixture<WebApplicationFactory<Program
     }
 
     [Theory, MemberData(nameof(AddRecipe_RequestsWithInvalidValues))]
-    public async void AddRecipe_DoesNotAcceptMalformedRequests(JsonObject request, string property)
+    public async Task AddRecipe_DoesNotAcceptMalformedRequests(JsonObject request, string property)
     {
         var client = _factory.CreateClient();
 
@@ -56,7 +57,7 @@ public class RecipeControllerTests : IClassFixture<WebApplicationFactory<Program
     };
 
     [Fact]
-    public async void AddRecipe_Works()
+    public async Task AddRecipe_Works()
     {
         var client = _factory.CreateClient();
 
@@ -74,7 +75,7 @@ public class RecipeControllerTests : IClassFixture<WebApplicationFactory<Program
     }
 
     [Fact]
-    public async void AddRecipe_ReturnsConflictForRecipeWithAlreadyExistingName()
+    public async Task AddRecipe_ReturnsConflictForRecipeWithAlreadyExistingName()
     {
         var client = _factory.CreateClient();
 
@@ -96,7 +97,7 @@ public class RecipeControllerTests : IClassFixture<WebApplicationFactory<Program
 
     [Theory]
     [InlineData("6a318044-95d3-40b9-a2fc-8fef278efee2")]
-    public async void GetRecipe_ReturnsNotFoundForNonexistingId(string id)
+    public async Task GetRecipe_ReturnsNotFoundForNonexistingId(string id)
     {
         var client = _factory.CreateClient();
 
@@ -106,7 +107,7 @@ public class RecipeControllerTests : IClassFixture<WebApplicationFactory<Program
     }
 
     [Fact]
-    public async void GetRecipe_Works()
+    public async Task GetRecipe_Works()
     {
         var client = _factory.CreateClient();
 

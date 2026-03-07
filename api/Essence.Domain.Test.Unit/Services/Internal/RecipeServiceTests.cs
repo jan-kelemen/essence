@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Essence.Base.Vocabulary;
 using Essence.Domain.Model;
 using Essence.Domain.Repositories;
@@ -28,7 +29,7 @@ public class RecipeServiceTests
     }
 
     [Fact]
-    public async void AddRecipe_ReturnsConflict_AndResolvesConflictingRecipe_WhenConflictOccurs()
+    public async Task AddRecipe_ReturnsConflict_AndResolvesConflictingRecipe_WhenConflictOccurs()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
         var recipeRepository = Substitute.For<IRecipeRepository>();
@@ -55,7 +56,7 @@ public class RecipeServiceTests
     }
 
     [Fact]
-    public async void AddRecipe_ReturnsInvalidData_WhenInvalidDataOccurs()
+    public async Task AddRecipe_ReturnsInvalidData_WhenInvalidDataOccurs()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
         var recipeRepository = Substitute.For<IRecipeRepository>();
@@ -77,7 +78,7 @@ public class RecipeServiceTests
     }
 
     [Fact]
-    public async void AddRecipe_ReturnsConflict_AndResolvesMissingIngredients_WhenUnresolvedEntitiesOccurs()
+    public async Task AddRecipe_ReturnsConflict_AndResolvesMissingIngredients_WhenUnresolvedEntitiesOccurs()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
         var recipeRepository = Substitute.For<IRecipeRepository>();
@@ -107,7 +108,7 @@ public class RecipeServiceTests
     }
 
     [Fact]
-    public async void AddRecipe_Works()
+    public async Task AddRecipe_Works()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
         var recipeRepository = Substitute.For<IRecipeRepository>();
@@ -128,7 +129,7 @@ public class RecipeServiceTests
     }
 
     [Fact]
-    public async void GetRecipe_ReturnsNotFound_GivenNonexistingRecipeId()
+    public async Task GetRecipe_ReturnsNotFound_GivenNonexistingRecipeId()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
         var recipeRepository = Substitute.For<IRecipeRepository>();
@@ -150,7 +151,7 @@ public class RecipeServiceTests
     }
 
     [Fact]
-    public async void GetRecipe_Works()
+    public async Task GetRecipe_Works()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
         var recipeRepository = Substitute.For<IRecipeRepository>();

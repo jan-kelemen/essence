@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Essence.Base.Vocabulary;
 using Essence.Domain.Model;
 using Essence.Domain.Services;
@@ -24,7 +25,7 @@ public class IngredientControllerTests
     }
 
     [Fact]
-    public async void GetIngredient_ReturnsOk_GivenExistingIngredientId()
+    public async Task GetIngredient_ReturnsOk_GivenExistingIngredientId()
     {
         var identifierDto = "Id";
         var existingIngredient = new Ingredient(
@@ -44,7 +45,7 @@ public class IngredientControllerTests
     }
 
     [Fact]
-    public async void GetIngredient_ReturnsNotFound_GivenNonexistingIngredientId()
+    public async Task GetIngredient_ReturnsNotFound_GivenNonexistingIngredientId()
     {
         var identifierDto = "Id";
         var notFoundError = new GetIngredientError.NotFound(new(identifierDto));
@@ -58,7 +59,7 @@ public class IngredientControllerTests
     }
 
     [Fact]
-    public async void QueryIngredient_ReturnsIngredientsMatchingFilter()
+    public async Task QueryIngredient_ReturnsIngredientsMatchingFilter()
     {
         var ingredientService = Substitute.For<IIngredientService>();
 
@@ -79,7 +80,7 @@ public class IngredientControllerTests
     }
 
     [Fact]
-    public async void AddIngredient_ReturnsConflict_GivenIngredientWithAlreadyExistingName()
+    public async Task AddIngredient_ReturnsConflict_GivenIngredientWithAlreadyExistingName()
     {
         var ingredientService = Substitute.For<IIngredientService>();
 
@@ -95,7 +96,7 @@ public class IngredientControllerTests
     }
 
     [Fact]
-    public async void AddIngredient_ReturnsCreated_GivenNewIngredient()
+    public async Task AddIngredient_ReturnsCreated_GivenNewIngredient()
     {
         var ingredientService = Substitute.For<IIngredientService>();
 
@@ -113,7 +114,7 @@ public class IngredientControllerTests
     }
 
     [Fact]
-    public async void UpdateIngredient_ReturnsConflict_GivenIngredientWithAlreadyExistingName()
+    public async Task UpdateIngredient_ReturnsConflict_GivenIngredientWithAlreadyExistingName()
     {
         var ingredientService = Substitute.For<IIngredientService>();
 
@@ -137,7 +138,7 @@ public class IngredientControllerTests
     }
 
     [Fact]
-    public async void UpdateIngredient_ReturnsNotFound_WhenNoEntitiesAreUpdated()
+    public async Task UpdateIngredient_ReturnsNotFound_WhenNoEntitiesAreUpdated()
     {
         var ingredientService = Substitute.For<IIngredientService>();
 
@@ -161,7 +162,7 @@ public class IngredientControllerTests
     }
 
     [Fact]
-    public async void UpdateIngredient_ReturnsOk_WhenSingleEntityIsUpdated()
+    public async Task UpdateIngredient_ReturnsOk_WhenSingleEntityIsUpdated()
     {
         var ingredientService = Substitute.For<IIngredientService>();
 
@@ -184,7 +185,7 @@ public class IngredientControllerTests
     }
 
     [Fact]
-    public async void DeleteIngredient_ReturnsNotFound_WhenNoEntitiesAreDeleted()
+    public async Task DeleteIngredient_ReturnsNotFound_WhenNoEntitiesAreDeleted()
     {
         var ingredientService = Substitute.For<IIngredientService>();
 
@@ -199,7 +200,7 @@ public class IngredientControllerTests
     }
 
     [Fact]
-    public async void DeleteIngredient_ReturnsOk_WhenSingleEntityIsDeleted()
+    public async Task DeleteIngredient_ReturnsOk_WhenSingleEntityIsDeleted()
     {
         var ingredientService = Substitute.For<IIngredientService>();
 

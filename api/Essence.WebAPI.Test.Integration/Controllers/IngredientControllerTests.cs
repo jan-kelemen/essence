@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json.Nodes;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Essence.WebAPI.Test.Integration.Controllers;
@@ -22,7 +23,7 @@ public class IngredientControllerTests : IClassFixture<WebApplicationFactory<Pro
     }
 
     [Theory, MemberData(nameof(AddIngredient_RequestsWithInvalidValues))]
-    public async void AddIngredient_DoesNotAcceptMalformedRequests(JsonObject request, string property)
+    public async Task AddIngredient_DoesNotAcceptMalformedRequests(JsonObject request, string property)
     {
         var client = _factory.CreateClient();
 
@@ -42,7 +43,7 @@ public class IngredientControllerTests : IClassFixture<WebApplicationFactory<Pro
     };
 
     [Fact]
-    public async void AddIngredient_Works()
+    public async Task AddIngredient_Works()
     {
         var client = _factory.CreateClient();
 
@@ -58,7 +59,7 @@ public class IngredientControllerTests : IClassFixture<WebApplicationFactory<Pro
     }
 
     [Theory, MemberData(nameof(UpdateIngredient_RequestsWithInvalidValues))]
-    public async void UpdateIngredient_DoesNotAcceptMalformedRequests(JsonObject request, string property)
+    public async Task UpdateIngredient_DoesNotAcceptMalformedRequests(JsonObject request, string property)
     {
         var client = _factory.CreateClient();
 
@@ -81,7 +82,7 @@ public class IngredientControllerTests : IClassFixture<WebApplicationFactory<Pro
     };
 
     [Fact]
-    public async void AddedIngredient_CanBeRetrived()
+    public async Task AddedIngredient_CanBeRetrived()
     {
         var client = _factory.CreateClient();
 
@@ -111,7 +112,7 @@ public class IngredientControllerTests : IClassFixture<WebApplicationFactory<Pro
     }
 
     [Fact]
-    public async void AddedIngredient_CanBeUpdated()
+    public async Task AddedIngredient_CanBeUpdated()
     {
         var client = _factory.CreateClient();
 
@@ -151,7 +152,7 @@ public class IngredientControllerTests : IClassFixture<WebApplicationFactory<Pro
     }
 
     [Fact]
-    public async void AddedIngredient_CanBeDeleted()
+    public async Task AddedIngredient_CanBeDeleted()
     {
         var client = _factory.CreateClient();
 
@@ -174,7 +175,7 @@ public class IngredientControllerTests : IClassFixture<WebApplicationFactory<Pro
     }
 
     [Fact]
-    public async void QueryIngredients_ReturnsIngredientsMatchingPrefixFilter()
+    public async Task QueryIngredients_ReturnsIngredientsMatchingPrefixFilter()
     {
         var client = _factory.CreateClient();
 

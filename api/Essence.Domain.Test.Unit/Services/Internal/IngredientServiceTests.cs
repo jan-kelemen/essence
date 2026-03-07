@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Essence.Domain.Model;
 using Essence.Domain.Repositories;
 using Essence.Domain.Services;
@@ -19,7 +20,7 @@ public class IngredientServiceTests
     }
 
     [Fact]
-    public async void GetIngredient_ReturnsNotFound_GivenNonexistingIngredientId()
+    public async Task GetIngredient_ReturnsNotFound_GivenNonexistingIngredientId()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
 
@@ -34,7 +35,7 @@ public class IngredientServiceTests
     }
 
     [Fact]
-    public async void GetIngredient_ReturnsMatchingIngredient_GivenExistingId()
+    public async Task GetIngredient_ReturnsMatchingIngredient_GivenExistingId()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
 
@@ -51,7 +52,7 @@ public class IngredientServiceTests
     }
 
     [Fact]
-    public async void QueryIngredients_ReturnsIngredientsMatchingFilter()
+    public async Task QueryIngredients_ReturnsIngredientsMatchingFilter()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
 
@@ -70,7 +71,7 @@ public class IngredientServiceTests
     }
 
     [Fact]
-    public async void AddIngredient_ReturnsConflict_GivenIngredientWithAlreadyExistingName()
+    public async Task AddIngredient_ReturnsConflict_GivenIngredientWithAlreadyExistingName()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
 
@@ -86,7 +87,7 @@ public class IngredientServiceTests
     }
 
     [Fact]
-    public async void AddIngredient_ReturnsIdentifier_GivenNewIngredient()
+    public async Task AddIngredient_ReturnsIdentifier_GivenNewIngredient()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
 
@@ -102,7 +103,7 @@ public class IngredientServiceTests
     }
 
     [Fact]
-    public async void UpdateIngredient_ReturnsNotFound_GivenNonexistingIngredientId()
+    public async Task UpdateIngredient_ReturnsNotFound_GivenNonexistingIngredientId()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
 
@@ -119,7 +120,7 @@ public class IngredientServiceTests
     }
 
     [Fact]
-    public async void UpdateIngredient_ReturnsConflict_GivenIngredientWithAlreadyExistingName()
+    public async Task UpdateIngredient_ReturnsConflict_GivenIngredientWithAlreadyExistingName()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
 
@@ -146,7 +147,7 @@ public class IngredientServiceTests
     }
 
     [Fact]
-    public async void UpdateIngredient_ReturnsNotFound_WhenNoEntitiesAreUpdated()
+    public async Task UpdateIngredient_ReturnsNotFound_WhenNoEntitiesAreUpdated()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
 
@@ -172,7 +173,7 @@ public class IngredientServiceTests
     }
 
     [Fact]
-    public async void UpdateIngredient_ReturnsNoError_WhenSingleEntityIsUpdated()
+    public async Task UpdateIngredient_ReturnsNoError_WhenSingleEntityIsUpdated()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
 
@@ -199,7 +200,7 @@ public class IngredientServiceTests
     }
 
     [Fact]
-    public async void DeleteIngredient_ReturnsNotFound_WhenNoEntitiesAreDeleted()
+    public async Task DeleteIngredient_ReturnsNotFound_WhenNoEntitiesAreDeleted()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
 
@@ -213,7 +214,7 @@ public class IngredientServiceTests
     }
 
     [Fact]
-    public async void DeleteIngredient_ReturnsNoError_WhenSingleEntityIsDeleted()
+    public async Task DeleteIngredient_ReturnsNoError_WhenSingleEntityIsDeleted()
     {
         var ingredientRepository = Substitute.For<IIngredientRepository>();
 
