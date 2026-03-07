@@ -1,46 +1,10 @@
 services:
-  elasticsearch:
-    image: elasticsearch:9.3.1
-    ports:
-      - 9200:9200
-      - 9300:9300
-    restart: on-failure
-    environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    healthcheck:
-      test: curl -s http://elasticsearch:9200 >/dev/null || exit 1
-      interval: 30s
-      timeout: 10s
-      retries: 50
-
-  jaeger-query:
-    image: jaegertracing/jaeger-query:1.76.0
-    ports:
-      - 16685:16685
-      - 16686:16686
-      - 16687:16687
-    restart: on-failure
-    environment:
-      - SPAN_STORAGE_TYPE=elasticsearch
-      - ES_SERVER_URLS=http://elasticsearch:9200
-    depends_on:
-      elasticsearch:
-        condition: service_healthy
-
-  jaeger-collector:
-    image: jaegertracing/jaeger-collector:1.76.0
+  jaeger:
+    image: cr.jaegertracing.io/jaegertracing/jaeger:2.15.0
     ports:
       - 4318:4318
-      - 14269:14269
+      - 16686:16686
     restart: on-failure
-    environment:
-      - SPAN_STORAGE_TYPE=elasticsearch
-      - ES_SERVER_URLS=http://elasticsearch:9200
-    depends_on:
-      elasticsearch:
-        condition: service_healthy
 
   postgres:
     image: postgres
@@ -60,13 +24,13 @@ services:
     env_file:
       - .env
     environment:
-      - OTLP_ENDPOINT_URL=http://jaeger-collector:4318/v1/traces
+      - OTLP_ENDPOINT_URL=http://jaeger:4318/v1/traces
       - Essence__PostgreConnection__ConnectionString=Server=postgres;Port=5432;Database=${POSTGRES_DB};User Id=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
     ports:
       - 5011:5010
     depends_on:
       - postgres
-      - jaeger-collector
+      - jaeger
       
 
   app:
