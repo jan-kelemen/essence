@@ -146,7 +146,7 @@ public class IngredientRepositoryTests
             Guid.NewGuid().ToString(),
             "Summary",
             "Description");
-        var addFirstResult = _repository.AddIngredient(firstIngredient);
+        await _repository.AddIngredient(firstIngredient);
 
         var secondIngredient = new NewIngredient(
             Guid.NewGuid().ToString(),
@@ -154,10 +154,8 @@ public class IngredientRepositoryTests
             "Description");
         var addSecondResult = _repository.AddIngredient(secondIngredient);
 
-        await Task.WhenAll(addFirstResult, addSecondResult);
-
         var updatedWithSameNameAsFirst = new Ingredient(
-            new(addSecondResult.Result.Expect(), firstIngredient.Name),
+            new((await addSecondResult).Expect(), firstIngredient.Name),
             "Updated summary",
             "Updated summary");
         var updateResult = await _repository.UpdateIngredient(updatedWithSameNameAsFirst);
