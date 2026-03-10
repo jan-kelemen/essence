@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Project Path="Essence.Base.Test.Unit/Essence.Base.Test.Unit.csproj" />
+  <Project Path="Essence.Base/Essence.Base.csproj" />
+  <Project Path="Essence.Domain.Infrastructure/Essence.Domain.Infrastructure.csproj" />
+  <Project Path="Essence.Domain.Test.Unit/Essence.Domain.Test.Unit.csproj" />
+  <Project Path="Essence.Domain/Essence.Domain.csproj" />
+  <Project Path="Essence.Persistence.Infrastructure/Essence.Persistence.Infrastructure.csproj" />
+  <Project Path="Essence.Persistence.Postgre.Test.Integration/Essence.Persistence.Postgre.Test.Integration.csproj" />
+  <Project Path="Essence.Persistence.Postgre.Test.Unit/Essence.Persistence.Postgre.Test.Unit.csproj" />
+  <Project Path="Essence.Persistence.Postgre/Essence.Persistence.Postgre.csproj" />
+  <Project Path="Essence.WebAPI.Test.Integration/Essence.WebAPI.Test.Integration.csproj" />
+  <Project Path="Essence.WebAPI.Test.Unit/Essence.WebAPI.Test.Unit.csproj" />
+  <Project Path="Essence.WebAPI/Essence.WebAPI.csproj" />
+</Solution>
